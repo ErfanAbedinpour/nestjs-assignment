@@ -7,7 +7,8 @@ export interface AccessTokenPayload {
 }
 
 export interface RefreshTokenPayload {
-    id: number
+    id: number,
+    tokenId: string
 }
 
 export abstract class TokenService {

@@ -7,6 +7,7 @@ import { LoginDto } from './dto/login-auth.dto';
 import { HashService } from './hashService/hash.service';
 import { AccessTokenService } from './tokenService/accessToken.service';
 import { RefreshTokenService } from './tokenService/refreshToken.service';
+import { UserTokenService } from './tokenService/userToken.service';
 
 @Injectable()
 export class AuthService {
@@ -14,8 +15,7 @@ export class AuthService {
   constructor(
     private readonly em: EntityManager,
     private readonly hashService: HashService,
-    private readonly accessTokenService: AccessTokenService,
-    private readonly refreshTokenService: RefreshTokenService
+    private readonly userTokenService: UserTokenService
   ) { }
 
   async create({ email, password, phone, username }: CreateAuthDto): Promise<{ msg: string }> {
@@ -30,7 +30,9 @@ export class AuthService {
       this.em.create(User, { email, username, password, phone, role: UserRole.USER }, { persist: true });
 
       await this.em.flush();
+
       return { msg: "user registered successfully" }
+
     } catch (err) {
       this.logger.error(err)
       throw new InternalServerErrorException(ErrorMessages.UNKNOWS_ERROR)
@@ -50,16 +52,14 @@ export class AuthService {
     try {
 
       const user = await this.em.findOneOrFail(User, { username });
-      const validPass = await this.hashService.compare(password, user.password);
+      const isValidPass = await this.hashService.compare(password, user.password);
 
-      if (!validPass)
+      if (!isValidPass)
         throw new BadRequestException(ErrorMessages.USER_NOTFOUND)
 
       // generate Tokens
-      const [accessToken, refreshToken] = await Promise.all([
-        this.accessTokenService.sign({ username: user.username, id: user.id, role: user.role }),
-        this.refreshTokenService.sign({ id: user.id })
-      ])
+
+      const { accessToken, refreshToken } = await this.userTokenService.genTokens({ id: user.id, role: user.role, username: user.username });
 
       return {
         accessToken,

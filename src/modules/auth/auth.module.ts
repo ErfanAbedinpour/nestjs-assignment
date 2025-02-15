@@ -8,6 +8,8 @@ import { ConfigModule } from '@nestjs/config';
 import tokenConfig from './config/token.config';
 import { AccessTokenService } from './tokenService/accessToken.service';
 import { RefreshTokenService } from './tokenService/refreshToken.service';
+import { UserTokenService } from './tokenService/userToken.service';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [ConfigModule.forFeature(tokenConfig), JwtModule.register({})],
@@ -20,6 +22,7 @@ import { RefreshTokenService } from './tokenService/refreshToken.service';
     },
     AccessTokenService,
     RefreshTokenService,
+    UserTokenService
   ],
 })
 export class AuthModule { }
