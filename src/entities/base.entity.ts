@@ -5,9 +5,9 @@ export abstract class BaseEntity {
     @PrimaryKey()
     id!: number
 
-    @Property({ columnType: 'bigint', type: 'bigint' })
-    createdAt = Date.now()
+    @Property({ nullable: true, columnType: 'bigint', type: 'bigint' })
+    createdAt? = Date.now()
 
-    @Property({ columnType: 'bigint', type: "bigint", onUpdate: () => Date.now() })
-    updatedAt = Date.now()
+    @Property({ nullable: true, columnType: 'bigint', type: "bigint", onUpdate: () => Date.now() })
+    updatedAt? = Date.now()
 }
