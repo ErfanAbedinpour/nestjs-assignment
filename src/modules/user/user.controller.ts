@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put, UseInterceptors, UploadedFile, ParseFilePipeBuilder, HttpStatus, Res, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put, UseInterceptors, UploadedFile, ParseFilePipeBuilder, HttpStatus, Res, ParseIntPipe, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
@@ -9,13 +9,14 @@ import { getUser } from '../auth/decorator/getUser.decorator';
 import { Response } from 'express';
 import { AccessTokenPayload } from '../auth/tokenService/token.service';
 import { UpdateRoleDto } from './dto/update-role.dt';
+import { GetUserDto } from './dto/get-user.dto';
 
 @Controller('user')
 @Auth([AuthStrategy.Bearer])
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
-
+  // download profile
   @Get("profile/:filename")
   async getProfile(@Param('filename') filename: string, @getUser() user: AccessTokenPayload, @Res() response: Response) {
     try {
@@ -29,6 +30,7 @@ export class UserController {
     }
   }
 
+  // upload profile
   @Post("profile")
   @UseInterceptors(FileInterceptor('profile'))
   uploadProfile(@UploadedFile(
@@ -40,33 +42,46 @@ export class UserController {
     return this.userService.storeProfilePicture(profile, id);
   }
 
-  @Patch()
-  update(@Body() body: UpdateUserDto, @getUser("id") id: number) {
-    return this.userService.update(id, body)
-  }
 
-  // admin Permission
+  // update 
   @Patch(':id')
-  @Role([UserRole.ADMIN])
-  updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  updateUser(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto, @getUser("role") role: UserRole) {
+    return this.userService.update(id, updateUserDto, role);
   }
 
+
+  // get User List With Pagination
   @Get()
   @Role([UserRole.ADMIN])
-  findAll() {
-    return this.userService.findAll();
+  findAll(@Query() { page }: GetUserDto) {
+    return this.userService.findAll(Number(page ?? 1));
   }
 
+  // get User By Id
+  @Get(":userId")
+  @Role([UserRole.ADMIN])
+  findOne(@Param('userId', ParseIntPipe) id: number) {
+    return this.userService.findOne(id);
+  }
+
+  // change User Role
   @Put(":userId/role")
   @Role([UserRole.ADMIN])
-  changeRole(@Body() role: UpdateRoleDto) { }
-
-  @Delete(':id')
-  @Role([UserRole.ADMIN])
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  changeRole(@Body() role: UpdateRoleDto, @Param('userId', ParseIntPipe) userId: number) {
+    return this.userService.changeRole(role, userId)
   }
 
+  // delete User
+  @Delete(':id')
+  @Role([UserRole.ADMIN])
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.remove(id);
+  }
+
+  @Delete('profile/:filename')
+  @Role([UserRole.ADMIN])
+  removeProfile(@Param('filename') filename: string) {
+    return this.userService.removeFileName(filename);
+  }
 
 }
