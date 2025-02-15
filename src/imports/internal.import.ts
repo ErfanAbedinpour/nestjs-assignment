@@ -1,3 +1,3 @@
-import { AuthModule } from "../modules/auth/v1/auth.module";
+import { AuthModule } from "../modules/auth/auth.module";
 
 export const internalImports = [AuthModule]
