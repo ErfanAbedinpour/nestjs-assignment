@@ -12,6 +12,7 @@ export class AccessTokenGuard implements CanActivate {
 
     private readonly INVALID_HEADER = "please enter bearer Header"
     private readonly INVALID_TOKEN = "token invalid or expired."
+
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest<Request>();
         const token = this.getAuthHeader(request);
