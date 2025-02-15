@@ -1,5 +1,12 @@
-import { AuthModule } from "../moduels/auth/auth.module";
-import { TaskModule } from "../moduels/task/task.module";
-import { UserModule } from "../moduels/user/user.module";
+import { MikroOrmModule } from "@mikro-orm/nestjs";
+import { ConfigModule } from "@nestjs/config";
+import config from '../mikro-orm.config'
 
-export const externalImports = []
+export const externalImports = [
+    ConfigModule.forRoot({
+        envFilePath: `${process.cwd()}/.env`,
+        isGlobal: true,
+        cache: true,
+    }),
+    MikroOrmModule.forRoot(config)
+]

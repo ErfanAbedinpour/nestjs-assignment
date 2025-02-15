@@ -1,6 +1,3 @@
-import { AuthModule } from "../moduels/auth/auth.module";
-import { TaskModule } from "../moduels/task/task.module";
-import { UserModule } from "../moduels/user/user.module";
+import { AuthModule } from "../modules/auth/v1/auth.module";
 
-
-export const internalImports = [AuthModule, UserModule, TaskModule]
+export const internalImports = [AuthModule]
