@@ -1,5 +1,5 @@
 import { BadRequestException, ConflictException, ForbiddenException, HttpException, Injectable, InternalServerErrorException, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { CreateUserDto } from './dto/create-auth.dto';
 import { EntityManager, NotFoundError } from '@mikro-orm/mysql';
 import { ErrorMessages } from '../../responses/error.response';
 import { User, UserRole } from '../../entities/user.entity';
@@ -20,7 +20,7 @@ export class AuthService {
     private readonly refreshTokenService: RefreshTokenService
   ) { }
 
-  async create({ email, password, phone, username }: CreateAuthDto): Promise<{ msg: string }> {
+  async create({ email, password, phone, username }: CreateUserDto): Promise<{ msg: string }> {
     // check information is valid or not
     const isValidInformation = await this.em.findOne(User, { $or: [{ username }, { email }, { phone }] });
 
