@@ -1,7 +1,8 @@
-import { Collection, Entity, Enum, OneToMany, Property } from "@mikro-orm/core";
+import { BeforeCreate, Collection, Entity, Enum, EventArgs, OneToMany, Property } from "@mikro-orm/core";
 import { Task } from "./task.entity";
 import { Profile } from "./profile.entity";
 import { BaseEntity } from "./base.entity";
+import { ArgonService } from "../modules/auth/hashService/argon.service";
 
 export enum UserRole {
     ADMIN = 'admin',
@@ -11,6 +12,8 @@ export enum UserRole {
 
 @Entity({ tableName: "user" })
 export class User extends BaseEntity {
+
+    private argonService = new ArgonService();
 
     @Property({ nullable: false, unique: true })
     email: string
@@ -33,5 +36,12 @@ export class User extends BaseEntity {
 
     @OneToMany(() => Profile, profile => profile.user)
     profiles = new Collection<Profile>(this)
+
+    @BeforeCreate()
+    async beforeCreateHandler(arg: EventArgs<this>) {
+        arg.entity.password = await this.argonService.hash(arg.entity.password)
+        arg.entity.email = arg.entity.email.toLowerCase();
+        return arg;
+    }
 }
 
