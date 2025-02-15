@@ -7,6 +7,8 @@ import { UserRole } from '../../entities/user.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { getUser } from '../auth/decorator/getUser.decorator';
 import { Response } from 'express';
+import { AccessTokenPayload } from '../auth/tokenService/token.service';
+import { UpdateRoleDto } from './dto/update-role.dt';
 
 @Controller('user')
 @Auth([AuthStrategy.Bearer])
@@ -15,9 +17,10 @@ export class UserController {
 
 
   @Get("profile/:filename")
-  async getProfile(@Param('filename') filename: string, @getUser("id") id: number, @Res() response: Response) {
+  async getProfile(@Param('filename') filename: string, @getUser() user: AccessTokenPayload, @Res() response: Response) {
     try {
-      const stream = await this.userService.getProfilePicture(filename, id)
+      console.log("role is ", user.role)
+      const stream = await this.userService.getProfilePicture(filename, user.id, user.role)
       // donwload file directly
       response.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
       stream.pipe(response);
@@ -38,7 +41,9 @@ export class UserController {
   }
 
   @Patch()
-  update() { }
+  update(@Body() body: UpdateUserDto, @getUser("id") id: number) {
+    return this.userService.update(id, body)
+  }
 
   // admin Permission
   @Patch(':id')
@@ -53,9 +58,9 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Put("role")
+  @Put(":userId/role")
   @Role([UserRole.ADMIN])
-  changeRole() { }
+  changeRole(@Body() role: UpdateRoleDto) { }
 
   @Delete(':id')
   @Role([UserRole.ADMIN])
@@ -63,17 +68,5 @@ export class UserController {
     return this.userService.remove(+id);
   }
 
-  @Get(":id/profile/:filename")
-  @Role([UserRole.ADMIN])
-  async getUserProfile(@Param("filename") filename: string, @Param("id", ParseIntPipe) userId: number, @Res() response: Response) {
-    try {
-      const stream = await this.userService.getProfilePicture(filename, userId)
-      // donwload file directly
-      response.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-      stream.pipe(response);
-    } catch (err) {
-      throw err
-    }
-  }
 
 }

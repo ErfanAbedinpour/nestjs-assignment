@@ -1,11 +1,13 @@
 import { BadGatewayException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { EntityManager } from '@mikro-orm/mysql';
+import { EntityManager, NotFoundError } from '@mikro-orm/mysql';
 import { createReadStream, createWriteStream, existsSync, ReadStream } from 'fs';
 import { extname } from 'path';
 import { ErrorMessages } from '../../responses/error.response';
 import { Profile } from '../../entities/profile.entity';
+import { User, UserRole } from '../../entities/user.entity';
+import { UpdateRoleDto } from './dto/update-role.dt';
+import { throwDeprecation } from 'process';
 
 @Injectable()
 export class UserService {
@@ -13,13 +15,17 @@ export class UserService {
 
   constructor(private readonly em: EntityManager) { }
 
-  async getProfilePicture(filename: string, userId: number): Promise<ReadStream> {
-    const isUserAccess = await this.em.findOne(Profile, { user: userId, src: filename });
+  async getProfilePicture(filename: string, userId: number, role: UserRole): Promise<ReadStream> {
+    // check User Role if Not Admin Authorize them
+    if (role === UserRole.USER) {
+      const isUserAccess = await this.em.findOne(Profile, { user: userId, src: filename });
 
-    if (!isUserAccess)
-      throw new BadGatewayException("user doesnt have this profile");
+      if (!isUserAccess)
+        throw new BadGatewayException("user doesnt have this profile");
+    }
 
     const filePath = this.baseProfilePath + filename;
+
     if (!existsSync(filePath))
       throw new NotFoundException("file not found.")
 
@@ -50,9 +56,6 @@ export class UserService {
     }
   }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
 
   findAll() {
     return `This action returns all user`;
@@ -66,9 +69,39 @@ export class UserService {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  mikroOrmErrorhandler(err: unknown) {
+    // handler MirkOrm Error
+    if (err instanceof NotFoundError)
+      throw new NotFoundException(ErrorMessages.USER_NOTFOUND)
   }
 
-  changeRole(newRole) { }
+  async remove(id: number) {
+    try {
+
+      const user = await this.em.findOneOrFail(User, id);
+      this.em.remove(user);
+      this.em.flush();
+
+      return { msg: "user removed successfully", user };
+
+    } catch (err) {
+      this.mikroOrmErrorhandler(err)
+      throw new InternalServerErrorException(ErrorMessages.UNKNOWS_ERROR)
+    }
+  }
+
+  async changeRole({ role }: UpdateRoleDto, userId: number) {
+    try {
+      const user = await this.em.findOneOrFail(User, userId);
+
+      user.role = role;
+
+      await this.em.flush();
+      return user;
+    } catch (err) {
+      this.mikroOrmErrorhandler(err)
+      throw new InternalServerErrorException(ErrorMessages.UNKNOWS_ERROR)
+    }
+
+  }
 }
