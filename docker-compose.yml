@@ -1,0 +1,65 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile 
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:3000
+    depends_on:
+      - db 
+    volumes:
+      - .:/app
+    networks:
+      - app
+    command: ["npm", "run","start:dev"]
+
+  migration:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    restart: "no"
+    command: sh -c "npm run migrate:create && npm run migrate:up"
+    profiles:
+      - migration
+    networks:
+      - app
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: mysql 
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - app
+
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - 8080:8080
+    networks:
+      - app
+  
+volumes:
+  app:
+  db:
+
+networks:
+  app:
+    driver: bridge
