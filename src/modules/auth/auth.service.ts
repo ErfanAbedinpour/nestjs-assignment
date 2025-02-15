@@ -78,10 +78,13 @@ export class AuthService {
   async token({ refreshToken }: TokenDto) {
     try {
       const { id, tokenId } = await this.refreshTokenService.verify(refreshToken)
+
       const isValidToken = await this.userTokenService.isValid(id, tokenId, refreshToken);
+
       if (!isValidToken) {
         throw new UnauthorizedException(ErrorMessages.INVALID_TOKEN)
       }
+
       // get original User From DB
       const user = await this.em.findOneOrFail(User, id);
       // invalidte old token
@@ -93,6 +96,8 @@ export class AuthService {
       if (err instanceof JsonWebTokenError) {
         throw new UnauthorizedException(ErrorMessages.INVALID_TOKEN)
       }
+      if (err instanceof HttpException)
+        throw err
       this.mikroOrmErrorHandler(err as Error)
       this.logger.error(err)
       throw new InternalServerErrorException(ErrorMessages.UNKNOWS_ERROR)

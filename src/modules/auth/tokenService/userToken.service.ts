@@ -23,7 +23,7 @@ export class UserTokenService {
     }
 
     async insert(userId: number, tokenId: string, token: string): Promise<void> {
-        this.cacheManager.set(this.genKeys(userId, tokenId), token, 30 * 60);
+        await this.cacheManager.set(this.genKeys(userId, tokenId), token);
     }
 
     async isValid(userId: number, tokenId: string, token: string): Promise<boolean> {
@@ -36,6 +36,6 @@ export class UserTokenService {
     }
 
     private genKeys(userId: number, tokenId: string) {
-        return `user:${userId}:${tokenId}`
+        return (`user:${userId}:${tokenId.trim()}`).trim()
     }
 }

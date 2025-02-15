@@ -9,7 +9,8 @@ export class AuthGuard implements CanActivate {
     constructor(private readonly reflector: Reflector, private readonly accessTokenGuard: AccessTokenGuard) { }
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
-        const strategy = this.reflector.getAllAndOverride<AuthStrategy[]>(AUTH_TOKEN, [context.getHandler(), context.getClass()]) ?? [AuthStrategy.Bearer];
+        const strategy = this.reflector.getAllAndOverride<AuthStrategy[]>(AUTH_TOKEN, [context.getHandler(), context.getClass()]) ?? [AuthStrategy.NONE];
+
 
 
         for (const s of strategy) {

@@ -19,7 +19,7 @@ export class AuthController {
   }
 
   @Post("token")
-  token(token: TokenDto) {
+  token(@Body() token: TokenDto) {
     return this.authService.token(token);
   }
 }
