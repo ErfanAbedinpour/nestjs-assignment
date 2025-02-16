@@ -62,7 +62,7 @@ export class UserService {
   }
 
 
-  async findAll({ page, limit }: { page: number, limit: number }, sort?: 1 | 0, filter?: { email: string, username: string }): Promise<{ users: User[], meta: { count: number, allPages: number } }> {
+  async findAll({ page, limit }: { page: number, limit: number }, sort?: 1 | 0, filter?: { email: string, username: string }): Promise<{ users: User[], meta: { count: number, allPages: number, countAll: number } }> {
     const limitRow = limit || 10;
     const offset = (page - 1) * limitRow;
 
@@ -81,11 +81,13 @@ export class UserService {
 
       const [users, count] = await this.em.findAndCount(User, filterQuery, { offset, limit: limitRow, populate: ['profiles'], orderBy: { createdAt: sortBy } });
 
+
       return {
         users,
         meta: {
-          allPages: Math.ceil(count / limit),
-          count: count,
+          count: users.length,
+          allPages: Math.ceil(count / limitRow),
+          countAll: count,
         }
       };
     } catch (err) {
