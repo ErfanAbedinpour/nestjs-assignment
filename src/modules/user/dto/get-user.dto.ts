@@ -6,7 +6,12 @@ export class findAllQuery {
     @IsNumber()
     @IsOptional()
     @Min(1)
-    page: string
+    page: number
+
+    @IsOptional()
+    @Type(() => Number)
+    @IsNumber()
+    limit: number
 
     @IsOptional()
     @Type(() => Number)

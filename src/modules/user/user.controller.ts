@@ -53,8 +53,8 @@ export class UserController {
   // get User List With Pagination
   @Get()
   @Role([UserRole.ADMIN])
-  findAll(@Query() { page, email, sort, username }: findAllQuery) {
-    return this.userService.findAll(Number(page ?? 1), sort, { username, email });
+  findAll(@Query() query: findAllQuery) {
+    return this.userService.findAll({ limit: query.limit, page: query.page }, query.sort, { username: query.username, email: query.email });
   }
 
   // get User By Id

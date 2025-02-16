@@ -62,9 +62,9 @@ export class UserService {
   }
 
 
-  async findAll(page: number, sort?: 1 | 0, filter?: { email: string, username: string }): Promise<{ users: User[], meta: { count: number, allPages: number } }> {
-    const limit = 10;
-    const offset = (page - 1) * limit;
+  async findAll({ page, limit }: { page: number, limit: number }, sort?: 1 | 0, filter?: { email: string, username: string }): Promise<{ users: User[], meta: { count: number, allPages: number } }> {
+    const limitRow = limit || 10;
+    const offset = (page - 1) * limitRow;
 
     try {
       // if sort query exsist sort
@@ -79,7 +79,7 @@ export class UserService {
         }
       }
 
-      const [users, count] = await this.em.findAndCount(User, filterQuery, { offset, limit, populate: ['profiles'], orderBy: { createdAt: sortBy } });
+      const [users, count] = await this.em.findAndCount(User, filterQuery, { offset, limit: limitRow, populate: ['profiles'], orderBy: { createdAt: sortBy } });
 
       return {
         users,
