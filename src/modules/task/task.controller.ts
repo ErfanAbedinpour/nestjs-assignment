@@ -6,9 +6,11 @@ import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
 import { getUser } from '../auth/decorator/getUser.decorator';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { FindAllTaskQuery } from './dto/file-task.dto';
+import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
 
 @Controller('task')
 @Auth([AuthStrategy.Bearer])
+@ApiBearerAuth()
 export class TaskController {
   constructor(private readonly taskService: TaskService) { }
 

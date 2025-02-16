@@ -10,17 +10,21 @@ import { Response } from 'express';
 import { AccessTokenPayload } from '../auth/tokenService/token.service';
 import { UpdateRoleDto } from './dto/update-role.dt';
 import { findAllQuery } from './dto/get-user.dto';
+import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse } from '@nestjs/swagger';
+import { HttpErrorDto } from '../../dto/error.dto';
 
 @Controller('user')
 @Auth([AuthStrategy.Bearer])
+@ApiBearerAuth()
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
   // download profile
   @Get("profile/:filename")
+  @ApiOkResponse({ description: "profile downloaded successfully" })
+  @ApiNotFoundResponse({ description: "profile not found or you cannot access to this profile", type: HttpErrorDto })
   async getProfile(@Param('filename') filename: string, @getUser() user: AccessTokenPayload, @Res() response: Response) {
     try {
-      console.log("role is ", user.role)
       const stream = await this.userService.getProfilePicture(filename, user.id, user.role)
       // donwload file directly
       response.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
@@ -30,8 +34,18 @@ export class UserController {
     }
   }
 
+  // TODO: Added Profile Into Swagger Body
   // upload profile
   @Post("profile")
+  @ApiOkResponse({
+    description: "profile uploaded successfully", schema: {
+      type: "object",
+      properties: {
+        msg: { type: "string" },
+        fileName: { type: "string" }
+      }
+    }
+  },)
   @UseInterceptors(FileInterceptor('profile'))
   uploadProfile(@UploadedFile(
     new ParseFilePipeBuilder()

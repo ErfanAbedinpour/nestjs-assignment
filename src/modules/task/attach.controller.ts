@@ -4,9 +4,11 @@ import { getUser } from "../auth/decorator/getUser.decorator";
 import { Response } from "express";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Auth, AuthStrategy } from "../auth/decorator/auth.decorator";
+import { ApiBearerAuth } from "@nestjs/swagger";
 
 @Controller("task/:id/attach")
 @Auth([AuthStrategy.Bearer])
+@ApiBearerAuth()
 export class AttachController {
 
     constructor(private readonly taskService: TaskService) { }
