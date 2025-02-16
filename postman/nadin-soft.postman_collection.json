@@ -1,0 +1,3499 @@
+{
+	"info": {
+		"_postman_id": "900ef760-f605-49a4-af94-c7b3f52db8df",
+		"name": "nadin-soft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30815578"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"test13\",\n    \"email\":\"testmail2353@gmail.com\",\n    \"password\":\"Test123541234\",\n    \"phone\":\"091121772021\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "conflict",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"test1\",\n    \"email\":\"testmail233@gmail.com\",\n    \"password\":\"Test12341234\",\n    \"phone\":\"09112177201\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-w07KcMFaxezO9Tr0d5AIqGcfWgE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 08:48:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"username or email or phone in exsist before\",\n    \"error\": \"Conflict\",\n    \"statusCode\": 409\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"test13\",\n    \"email\":\"testmail2353@gmail.com\",\n    \"password\":\"Test123541234\",\n    \"phone\":\"091121772021\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-lIkC3/jwJ2UDNHmsYcvK1PYgBnw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 08:48:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"user registered successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwicm9sZSI6InVzZXIiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE3Mzk2MzMwNDEsImV4cCI6MTczOTYzNDg0MX0.y4WBvLu6VXkDZFRjjAkN4X4pVDB9D0DS_dnIJ9FiHjo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    // \"username\":\"test\",\n    // \"password\":\"Test12341324\"\n    \"username\":\"test1\",\n    \"password\":\"Test12341234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "invalidBody",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"username\":\"test\",\n    // \"password\":\"Test12341324\"\n    // \"username\":\"test1\",\n    // \"password\":\"Test12341234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aa-SDkUt3e72fc5wsvbvV3M/SHdsPM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:27:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        \"username must be a string\",\n        \"username should not be empty\",\n        \"password must be a string\",\n        \"password should not be empty\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"username\":\"test\",\n    // \"password\":\"Test12341324\"\n    \"username\":\"test1\",\n    \"password\":\"Test12341234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "424"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a8-mmGNxd+3OSNun4eLI4s3A3pvvP4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:29:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTA5OTYsImV4cCI6MTczOTY5Mjc5Nn0.Ylq73pe08XE5HFFf7cBOySblcOoFqvDAkqoGJDSdHOc\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInRva2VuSWQiOiI1OGExOTNhMi04OTE0LTQzNjEtODU5NC0yYmI0M2MwODZkM2QiLCJpYXQiOjE3Mzk2OTA5OTYsImV4cCI6MTczOTY5MTQxNn0.XYt8xLMooivCoXbAQig9hSGPQ_jn9Y9x2Ma5H9F7h8c\"\n}"
+						},
+						{
+							"name": "invalidCredential",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"username\":\"test\",\n    // \"password\":\"Test12341324\"\n    \"username\":\"test1\",\n    \"password\":\"Test123412324\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47-Wy0ehOGhKihuBVvgNkpa7ooAhL0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:35:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"invalid credential\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInRva2VuSWQiOiJkNWJiY2ZjZi0zY2EyLTRlNzQtYjE5My03MzE1NzI2YTZjYTciLCJpYXQiOjE3Mzk2OTU3OTYsImV4cCI6MTczOTY5NjIxNn0.k7enTec0xLpA3x7Wbt8LJ07eOguvpXYKTMpxc7kQ1ag\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInRva2VuSWQiOiJkNWJiY2ZjZi0zY2EyLTRlNzQtYjE5My03MzE1NzI2YTZjYTciLCJpYXQiOjE3Mzk2OTU3OTYsImV4cCI6MTczOTY5NjIxNn0.k7enTec0xLpA3x7Wbt8LJ07eOguvpXYKTMpxc7kQ1ag\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "430"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ae-lmTgXaF/q0mOJ4orYzG0uzLbLLw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 08:50:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"newAccessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTU4MDYsImV4cCI6MTczOTY5NzYwNn0.Mqgm05vQiD3JgNtLB00LKoy6PdLHNNs19JEdFH1K-b4\",\n    \"newRefreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInRva2VuSWQiOiJmMDQ1NTNlNy0zMjYxLTRmYTYtODNjNC0wMjA1MTE4NmRjMzYiLCJpYXQiOjE3Mzk2OTU4MDYsImV4cCI6MTczOTY5NjIyNn0.CUFvBJcIoYPObIJ5R4mhhDdkMLXdy7QGejzotwah-uE\"\n}"
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInRva2VuSWQiOiJkNWJiY2ZjZi0zY2EyLTRlNzQtYjE5My03MzE1NzI2YTZjYTciLCJpYXQiOjE3Mzk2OTU3OTYsImV4cCI6MTczOTY5NjIxNn0.k7enTec0xLpA3x7Wbt8LJ07eOguvpXYKTMpxc7kQ1ag\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/auth/token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"47-Evw3efAGAk3dKEJjenqNLkXGHGE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 08:50:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"token is invalid.\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "uploadProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTc2MDgsImV4cCI6MTczOTY5OTQwOH0.Ckp44Hskc4uhZHIy0pnEwNESgz-eC1FBbGOfzgp-dso",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile",
+									"type": "file",
+									"src": "/home/erfan/Downloads/download (1).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unAuth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download.html"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-8xBSeNvMshMX6SGYNT06FFLR938\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:19:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"token invalid or expired.\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download (1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-rb5UiPYZvXkJiJ1iAsJCEiJ30aM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:20:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"profile uploaded successfully\",\n    \"fileName\": \"49624400299063615000.jpeg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DownloadProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTc2MDgsImV4cCI6MTczOTY5OTQwOH0.Ckp44Hskc4uhZHIy0pnEwNESgz-eC1FBbGOfzgp-dso",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/profile/4962440029906361500.jpeg",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"4962440029906361500.jpeg"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notFoundOrAccess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user/profile/.jpeg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile",
+										".jpeg"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-qPmosE6gR0atJX/p63ZXsna2yG8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:21:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"file not found.\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						}
+					]
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2NDkwOTcsImV4cCI6MTczOTY1MDg5N30.kSBiLWpek3WcteYk2Kn6v5Z9G0W2Y-VSNSiB1rDpd_s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-ArcYTIXg+Fw8G/Fu3hW/8olMcdE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:22:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"createdAt\": \"1739624811745\",\n    \"updatedAt\": \"1739650699360\",\n    \"email\": \"azizmmdi@gmail.com\",\n    \"phone\": \"12341234123\",\n    \"username\": \"azizmmdi\",\n    \"role\": \"user\",\n    \"profiles\": []\n}"
+						},
+						{
+							"name": "notAccessByUser",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"7"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-hskqi0rELi/4zuS97DA0WYhYfmo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:22:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"you cannot access this route\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2NDkwOTcsImV4cCI6MTczOTY1MDg5N30.kSBiLWpek3WcteYk2Kn6v5Z9G0W2Y-VSNSiB1rDpd_s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/user/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notAccessByUser",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-hskqi0rELi/4zuS97DA0WYhYfmo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:22:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"you cannot access this route\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1638"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"666-iPRwAXf2M96toiAtjDoCLvXSI+E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:23:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": 7,\n            \"createdAt\": \"1739624811745\",\n            \"updatedAt\": \"1739650699360\",\n            \"email\": \"azizmmdi@gmail.com\",\n            \"phone\": \"12341234123\",\n            \"username\": \"azizmmdi\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 8,\n            \"createdAt\": \"1739624893658\",\n            \"updatedAt\": \"1739624893658\",\n            \"email\": \"testmail2@gmail.com\",\n            \"phone\": \"09112177205\",\n            \"username\": \"test-12\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 9,\n            \"createdAt\": \"1739627564382\",\n            \"updatedAt\": \"1739627564382\",\n            \"email\": \"testmail23@gmail.com\",\n            \"phone\": \"09112177206\",\n            \"username\": \"test\",\n            \"role\": \"user\",\n            \"profiles\": [\n                {\n                    \"id\": 3,\n                    \"createdAt\": \"1739643723915\",\n                    \"updatedAt\": \"1739643723915\",\n                    \"src\": \"147197520479905480000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 2,\n                    \"createdAt\": \"1739643683839\",\n                    \"updatedAt\": \"1739643683839\",\n                    \"src\": \"26345653617868935000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 1,\n                    \"createdAt\": \"1739643660137\",\n                    \"updatedAt\": \"1739643660137\",\n                    \"src\": \"57900498957878540000.jpeg\",\n                    \"user\": 9\n                }\n            ]\n        },\n        {\n            \"id\": 10,\n            \"createdAt\": \"1739645135783\",\n            \"updatedAt\": \"1739645135783\",\n            \"email\": \"testmail233@gmail.com\",\n            \"phone\": \"09112177201\",\n            \"username\": \"test1\",\n            \"role\": \"admin\",\n            \"profiles\": [\n                {\n                    \"id\": 8,\n                    \"createdAt\": \"1739697636951\",\n                    \"updatedAt\": \"1739697636951\",\n                    \"src\": \"49624400299063615000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 7,\n                    \"createdAt\": \"1739686904126\",\n                    \"updatedAt\": \"1739686904126\",\n                    \"src\": \"140755759545285970000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 6,\n                    \"createdAt\": \"1739685775146\",\n                    \"updatedAt\": \"1739685775146\",\n                    \"src\": \"165441336721896340000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 4,\n                    \"createdAt\": \"1739645182386\",\n                    \"updatedAt\": \"1739645182386\",\n                    \"src\": \"114452701136144070000.jpg\",\n                    \"user\": 10\n                }\n            ]\n        },\n        {\n            \"id\": 11,\n            \"createdAt\": \"1739695709864\",\n            \"updatedAt\": \"1739695709864\",\n            \"email\": \"testmail2353@gmail.com\",\n            \"phone\": \"091121772021\",\n            \"username\": \"test13\",\n            \"role\": \"user\",\n            \"profiles\": []\n        }\n    ],\n    \"meta\": {\n        \"allPages\": 1,\n        \"count\": 5\n    }\n}"
+						},
+						{
+							"name": "pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user?page=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-z9zBW18KXthrgMfuYurI2SvtFhc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:23:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [],\n    \"meta\": {\n        \"allPages\": 1,\n        \"count\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwicm9sZSI6InVzZXIiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE3Mzk2OTc5MDIsImV4cCI6MTczOTY5OTcwMn0.gwpj2vx8n_Iy2ULClxgcDAAOWN3Lc74CKt8rTQ3S7Fw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"azizmmdi@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"azizmmdi@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "161"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a1-CDm0sOlPN0ikl7FG83IQWKk0BfU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:24:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"createdAt\": \"1739624811745\",\n    \"updatedAt\": \"1739697846123\",\n    \"email\": \"azizmmdi@gmail.com\",\n    \"phone\": \"12341234123\",\n    \"username\": \"azizmmdi@gmail.com\",\n    \"role\": \"user\"\n}"
+						},
+						{
+							"name": "notAccessToChangeUsername",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"azizmmdi@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"7"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-u8O57QF1G5eVIud9NsKSMMwuUAI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:25:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"cannot change you own username\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						}
+					]
+				},
+				{
+					"name": "roleChange",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTgwMDYsImV4cCI6MTczOTY5OTgwNn0.qPISp8A-VOCPDN2nxI-yjI6Ghxj7DuF0__H1ce4wyos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\":\"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/7/role",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"7",
+								"role"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notAccess",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"role\":\"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/1/role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"1",
+										"role"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-hskqi0rELi/4zuS97DA0WYhYfmo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:26:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"you cannot access this route\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"role\":\"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/7/role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"7",
+										"role"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "161"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a1-CDm0sOlPN0ikl7FG83IQWKk0BfU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:27:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"createdAt\": \"1739624811745\",\n    \"updatedAt\": \"1739697846123\",\n    \"email\": \"azizmmdi@gmail.com\",\n    \"phone\": \"12341234123\",\n    \"username\": \"azizmmdi@gmail.com\",\n    \"role\": \"user\"\n}"
+						}
+					]
+				},
+				{
+					"name": "removeProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTgwOTEsImV4cCI6MTczOTY5OTg5MX0.mCdgZMwpoy_IXHUN7hlSpU1guNLZFCl4PDjiE_g5_Cs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\":\"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/profile/49624400299063615000.jpeg",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"49624400299063615000.jpeg"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notAccess",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"role\":\"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/profile/117986716006419480000.jpeg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile",
+										"117986716006419480000.jpeg"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-hskqi0rELi/4zuS97DA0WYhYfmo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:27:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"you cannot access this route\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "notFound",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"role\":\"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/profile/117986716006419480000.jpeg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile",
+										"117986716006419480000.jpeg"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-zjhxXYAEmU2o0nNIxkg0uQ3kwyU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:28:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"profile not found\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"role\":\"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/user/profile/49624400299063615000.jpeg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"profile",
+										"49624400299063615000.jpeg"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-ekHx2B80lSBhou3gXGRKklm/Uqk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:28:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"successfully Removed\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "attach",
+					"item": [
+						{
+							"name": "addAttach",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTYxOTksImV4cCI6MTczOTY5Nzk5OX0.lvZ-GvvDlSr1aEITy9LrXHjKeej4yxK8fpZcgkH5Rns",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/37/attach",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"37",
+										"attach"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ok",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"type": "file",
+													"src": "/home/erfan/Downloads/download.jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/task/37/attach",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"37",
+												"attach"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "28"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1c-CZ2+BKuPJAsU4QfX9zWArWpwrxA\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 09:11:35 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"msg\": \"added successfully\"\n}"
+								},
+								{
+									"name": "unAuth",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"type": "file",
+													"src": "/home/erfan/Downloads/download.jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/task/37/attach",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"37",
+												"attach"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "80"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 09:15:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								},
+								{
+									"name": "notFound",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"type": "file",
+													"src": "/home/erfan/Downloads/download.jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/task/6/attach",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"6",
+												"attach"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "65"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"41-DV191T1LDkwHFf2ru8j9XJcqoNI\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 09:15:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"task not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+								}
+							]
+						},
+						{
+							"name": "removeAttach",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTA5OTYsImV4cCI6MTczOTY5Mjc5Nn0.Ylq73pe08XE5HFFf7cBOySblcOoFqvDAkqoGJDSdHOc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260000.jpeg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"24",
+										"attach",
+										"14536997776865260000.jpeg"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "ok",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260000.jpeg",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"24",
+												"attach",
+												"14536997776865260000.jpeg"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-6LcuCDNgMqRljkpJss9y36XsUrQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 07:31:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"msg\": \"14536997776865260000.jpeg removed\"\n}"
+								},
+								{
+									"name": "notFound",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260000.jpeg",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"24",
+												"attach",
+												"14536997776865260000.jpeg"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "67"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"43-51KOnfdLk6kSoVfsOujEoMeYMW0\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 07:31:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"attach not Found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+								},
+								{
+									"name": "unAuth",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260000.jpeg",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"24",
+												"attach",
+												"14536997776865260000.jpeg"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "80"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 09:15:57 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								}
+							]
+						},
+						{
+							"name": "downloadAttach",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTA5OTYsImV4cCI6MTczOTY5Mjc5Nn0.Ylq73pe08XE5HFFf7cBOySblcOoFqvDAkqoGJDSdHOc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260001234.jpeg",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"24",
+										"attach",
+										"14536997776865260001234.jpeg"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "notFound",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260001234.jpeg",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"24",
+												"attach",
+												"14536997776865260001234.jpeg"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "67"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"43-XmaZknHxr5bM1uAIUJQ8wTL/0V8\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 07:30:33 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"attach not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+								},
+								{
+									"name": "unAuth",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/task/24/attach/14536997776865260001234.jpeg",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"task",
+												"24",
+												"attach",
+												"14536997776865260001234.jpeg"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "80"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 09:16:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "createTask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTYxOTksImV4cCI6MTczOTY5Nzk5OX0.lvZ-GvvDlSr1aEITy9LrXHjKeej4yxK8fpZcgkH5Rns",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "this is test2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is tetst description for test2",
+									"type": "text"
+								},
+								{
+									"key": "attached",
+									"type": "file",
+									"src": "/home/erfan/Downloads/download (1).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": [
+												"/home/erfan/Downloads/download.jpeg",
+												"/home/erfan/Downloads/download.jpeg",
+												"/home/erfan/Downloads/download (1).jpeg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "475"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1db-AfsfQCHLVfr/ogGJJjWXAoJda0c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 06:58:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"task\": {\n        \"id\": 34,\n        \"attached\": [\n            {\n                \"id\": 39,\n                \"createdAt\": \"1739689098864\",\n                \"updatedAt\": \"1739689098864\",\n                \"src\": \"103916202025022620000.jpeg\"\n            },\n            {\n                \"id\": 40,\n                \"createdAt\": \"1739689098864\",\n                \"updatedAt\": \"1739689098864\",\n                \"src\": \"155490994508126700000.jpeg\"\n            },\n            {\n                \"id\": 41,\n                \"createdAt\": \"1739689098864\",\n                \"updatedAt\": \"1739689098864\",\n                \"src\": \"124254048874775920000.jpeg\"\n            }\n        ],\n        \"createdAt\": \"1739689098864\",\n        \"updatedAt\": \"1739689098864\",\n        \"name\": \"this is test2\",\n        \"description\": \"this is tetst description for test2\",\n        \"user\": 10\n    }\n}"
+						},
+						{
+							"name": "BadRequest",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": [
+												"/home/erfan/Downloads/download.jpeg",
+												"/home/erfan/Downloads/download.jpeg",
+												"/home/erfan/Downloads/download (1).jpeg",
+												"/home/erfan/newImage.jpg",
+												"/home/erfan/Downloads/download.jpeg"
+											],
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-n2wEOFSPaRXrrZKGxunspLkk4n4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:20:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"File is required\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+						},
+						{
+							"name": "unAuth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download (1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				},
+				{
+					"name": "findAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTAyNjEsImV4cCI6MTczOTY5MjA2MX0.-DWu7CU1843CgmO9vy0jYelFJUMQWDjnG4MwuqigruI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "this is test2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is tetst description for test2",
+									"type": "text"
+								},
+								{
+									"key": "attached",
+									"type": "file",
+									"src": "/home/erfan/Downloads/download.html",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task?page=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download.html",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task?page=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2303"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8ff-wdBE3qVmG+8BzniYQ76Yyg9mYzM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:23:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"tasks\": [\n        {\n            \"id\": 16,\n            \"createdAt\": \"1739687713328\",\n            \"updatedAt\": \"1739687713328\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 17,\n            \"createdAt\": \"1739687803965\",\n            \"updatedAt\": \"1739687803965\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 18,\n            \"createdAt\": \"1739687815172\",\n            \"updatedAt\": \"1739687815172\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 19,\n            \"createdAt\": \"1739687838551\",\n            \"updatedAt\": \"1739687838551\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 20,\n            \"createdAt\": \"1739687856520\",\n            \"updatedAt\": \"1739687856520\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 21,\n            \"createdAt\": \"1739687896684\",\n            \"updatedAt\": \"1739687896684\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 15,\n                    \"createdAt\": \"1739687896689\",\n                    \"updatedAt\": \"1739687896689\",\n                    \"src\": \"6599329586654647000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 22,\n            \"createdAt\": \"1739687991881\",\n            \"updatedAt\": \"1739687991881\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 16,\n                    \"createdAt\": \"1739687991884\",\n                    \"updatedAt\": \"1739687991884\",\n                    \"src\": \"95128822199102550000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 23,\n            \"createdAt\": \"1739688013111\",\n            \"updatedAt\": \"1739688013111\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 17,\n                    \"createdAt\": \"1739688013111\",\n                    \"updatedAt\": \"1739688013111\",\n                    \"src\": \"165464675370771940000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 24,\n            \"createdAt\": \"1739688049279\",\n            \"updatedAt\": \"1739688049279\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 18,\n                    \"createdAt\": \"1739688049282\",\n                    \"updatedAt\": \"1739688049282\",\n                    \"src\": \"14536997776865260000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 25,\n            \"createdAt\": \"1739688976676\",\n            \"updatedAt\": \"1739688976676\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 19,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"112165085497142400000.jpeg\"\n                },\n                {\n                    \"id\": 20,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"36495151652542157000.jpg\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"count\": 10,\n        \"allPages\": 2,\n        \"countAll\": 16\n    }\n}"
+						},
+						{
+							"name": "unAuth Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download (1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "unAuth Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download (1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "unAuth Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download (1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						},
+						{
+							"name": "unAuth Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download (1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+						}
+					]
+				},
+				{
+					"name": "findOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTAyNjEsImV4cCI6MTczOTY5MjA2MX0.-DWu7CU1843CgmO9vy0jYelFJUMQWDjnG4MwuqigruI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "this is test2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is tetst description for test2",
+									"type": "text"
+								},
+								{
+									"key": "attached",
+									"type": "file",
+									"src": "/home/erfan/Downloads/download.html",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task/30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"30"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notFound",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download.html",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"6"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-DV191T1LDkwHFf2ru8j9XJcqoNI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:24:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"task not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "this is test2",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "this is tetst description for test2",
+											"type": "text"
+										},
+										{
+											"key": "attached",
+											"type": "file",
+											"src": "/home/erfan/Downloads/download.html",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/30",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"30"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12d-5VGwqM1RlqrClJp/AjvwmdHcB9k\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:24:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 30,\n    \"createdAt\": \"1739689068526\",\n    \"updatedAt\": \"1739689068526\",\n    \"name\": \"this is test2\",\n    \"description\": \"this is tetst description for test2\",\n    \"user\": {\n        \"id\": 10,\n        \"createdAt\": \"1739645135783\",\n        \"updatedAt\": \"1739645135783\",\n        \"email\": \"testmail233@gmail.com\",\n        \"phone\": \"09112177201\",\n        \"username\": \"test1\",\n        \"role\": \"admin\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "removeTask",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTAyNjEsImV4cCI6MTczOTY5MjA2MX0.-DWu7CU1843CgmO9vy0jYelFJUMQWDjnG4MwuqigruI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/task/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notFoundOrAccess",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/task/3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-DV191T1LDkwHFf2ru8j9XJcqoNI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:25:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"task not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						},
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/task/20",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"20"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "164"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a4-+0ZC3j1pTjfNODB0DUyzdwnrFdA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:25:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 20,\n    \"createdAt\": \"1739687856520\",\n    \"updatedAt\": \"1739687856520\",\n    \"name\": \"this is test2\",\n    \"description\": \"this is tetst description for test2\",\n    \"user\": 10,\n    \"attached\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTA5OTYsImV4cCI6MTczOTY5Mjc5Nn0.Ylq73pe08XE5HFFf7cBOySblcOoFqvDAkqoGJDSdHOc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"helloWOrold\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"helloWOrold\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/16",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"16"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "148"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"94-IEemRNbUDMKtBcyVh5sVdG+fIv4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:32:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 16,\n    \"createdAt\": \"1739687713328\",\n    \"updatedAt\": \"1739691147752\",\n    \"name\": \"helloWOrold\",\n    \"description\": \"this is tetst description for test2\",\n    \"user\": 10\n}"
+						},
+						{
+							"name": "notFoundOrAccess",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"helloWOrold\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-DV191T1LDkwHFf2ru8j9XJcqoNI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 07:32:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"task not found\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

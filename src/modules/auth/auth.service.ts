@@ -49,16 +49,16 @@ export class AuthService {
   }
 
   async login({ password, username }: LoginDto) {
+    // find User
+    const user = await this.em.findOne(User, { username });
+
+    // validate User Credential
+    if (!user || !(await this.hashService.compare(password, user.password)))
+      throw new BadRequestException(ErrorMessages.INVALID_CREDENTIAL)
+
     try {
 
-      const user = await this.em.findOneOrFail(User, { username });
-      const isValidPass = await this.hashService.compare(password, user.password);
-
-      if (!isValidPass)
-        throw new BadRequestException(ErrorMessages.USER_NOTFOUND)
-
       // generate Tokens
-
       const { accessToken, refreshToken } = await this.userTokenService.genTokens({ id: user.id, role: user.role, username: user.username });
 
       return {
