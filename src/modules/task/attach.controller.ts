@@ -4,11 +4,12 @@ import { getUser } from "../auth/decorator/getUser.decorator";
 import { Response } from "express";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Auth, AuthStrategy } from "../auth/decorator/auth.decorator";
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiNotFoundResponse, ApiOkResponse, ApiParam, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiNotFoundResponse, ApiOkResponse, ApiParam, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { HttpErrorDto } from "../../dto/error.dto";
 
 @Controller("task/:id/attach")
 @Auth([AuthStrategy.Bearer])
+@ApiUnauthorizedResponse({ description: "header is empty or token invalid", type: HttpErrorDto })
 @ApiBearerAuth()
 export class AttachController {
 

@@ -5,4 +5,8 @@ export class AttachDto {
     id: number
     @ApiProperty()
     src: string;
+    @ApiProperty()
+    createdAt: string
+    @ApiProperty()
+    updatedAt: string
 }
