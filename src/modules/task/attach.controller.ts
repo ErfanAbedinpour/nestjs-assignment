@@ -1,10 +1,11 @@
-import { Controller, Delete, FileTypeValidator, Get, MaxFileSizeValidator, Param, ParseFilePipe, ParseIntPipe, Post, Res, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Delete, FileTypeValidator, Get, HttpStatus, MaxFileSizeValidator, Param, ParseFilePipe, ParseFilePipeBuilder, ParseIntPipe, Post, Res, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { TaskService } from "./task.service";
 import { getUser } from "../auth/decorator/getUser.decorator";
 import { Response } from "express";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Auth, AuthStrategy } from "../auth/decorator/auth.decorator";
-import { ApiBearerAuth } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiNotFoundResponse, ApiOkResponse, ApiParam, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { HttpErrorDto } from "../../dto/error.dto";
 
 @Controller("task/:id/attach")
 @Auth([AuthStrategy.Bearer])
@@ -12,12 +13,19 @@ import { ApiBearerAuth } from "@nestjs/swagger";
 export class AttachController {
 
     constructor(private readonly taskService: TaskService) { }
+
     @Delete(":filename")
+    @ApiParam({ name: "filename" })
+    @ApiOkResponse({ description: "attach file remove successfully", schema: { type: "object", properties: { msg: { type: "string" } } } })
+    @ApiNotFoundResponse({ description: "attach file not found", type: HttpErrorDto })
     removeAttachFile(@Param("id", ParseIntPipe) id: number, @Param("filename") filename: string, @getUser('id') userId: number) {
         return this.taskService.removeAttach(id, userId, filename)
     }
 
     @Get(":filename")
+    @ApiParam({ name: "filename" })
+    @ApiOkResponse({ description: "file downloaded successfully" })
+    @ApiNotFoundResponse({ description: "attach file not found", type: HttpErrorDto })
     async getAttach(@Param("id", ParseIntPipe) id: number, @Param('filename') fileName: string, @getUser('id') userId: number, @Res() res: Response) {
         try {
 
@@ -31,14 +39,37 @@ export class AttachController {
     }
 
     @Post()
+    @ApiConsumes('multipart/form-data')
+    @ApiOkResponse({
+        description: "file uploaded successfully", schema: {
+            type: "object",
+            properties: {
+                msg: { type: "string" },
+                fileName: { type: "string" }
+            }
+        }
+    })
+    @ApiUnprocessableEntityResponse({ description: "file is invalid" })
+    @ApiBody({
+        schema: {
+            type: "object",
+            properties: {
+                file: {
+                    type: 'string',
+                    format: 'binary',
+                }
+            }
+        }
+    })
     @UseInterceptors(FileInterceptor("file"))
     addAttach(@UploadedFile("file",
-        new ParseFilePipe({
-            validators: [
-                new FileTypeValidator({ fileType: /^image\/(jpeg|png|gif)$/ }),
-                new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024, message: "file must be lower than 5Mb" })
-            ]
-        })
+        new ParseFilePipeBuilder().
+            addFileTypeValidator({ fileType: /^image\/(jpeg|png|gif)$/ }).
+            addMaxSizeValidator({ maxSize: 5 * 1024 * 1024, message: "file must be lower than 5Mb" })
+            .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY })
+
+
+
     ) file: Express.Multer.File, @Param('id', ParseIntPipe) taskId: number, @getUser("id") userId: number) {
         return this.taskService.storeNewAttach(taskId, userId, file);
     }
