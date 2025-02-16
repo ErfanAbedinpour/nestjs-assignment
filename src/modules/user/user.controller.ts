@@ -9,7 +9,7 @@ import { getUser } from '../auth/decorator/getUser.decorator';
 import { Response } from 'express';
 import { AccessTokenPayload } from '../auth/tokenService/token.service';
 import { UpdateRoleDto } from './dto/update-role.dt';
-import { PaginationDto } from './dto/get-user.dto';
+import { findAllQuery } from './dto/get-user.dto';
 
 @Controller('user')
 @Auth([AuthStrategy.Bearer])
@@ -53,8 +53,8 @@ export class UserController {
   // get User List With Pagination
   @Get()
   @Role([UserRole.ADMIN])
-  findAll(@Query() { page }: PaginationDto) {
-    return this.userService.findAll(Number(page ?? 1));
+  findAll(@Query() { page, email, sort, username }: findAllQuery) {
+    return this.userService.findAll(Number(page ?? 1), sort, { username, email });
   }
 
   // get User By Id

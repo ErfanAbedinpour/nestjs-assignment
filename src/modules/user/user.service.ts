@@ -1,6 +1,6 @@
 import { BadGatewayException, BadRequestException, ConflictException, HttpException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { EntityManager, NotFoundError, UniqueConstraintViolationException, wrap } from '@mikro-orm/mysql';
+import { EntityManager, FilterQuery, NotFoundError, UniqueConstraintViolationException, wrap } from '@mikro-orm/mysql';
 import { createReadStream, createWriteStream, existsSync, ReadStream } from 'fs';
 import { rm } from 'fs/promises'
 import { extname } from 'path';
@@ -8,7 +8,7 @@ import { ErrorMessages } from '../../responses/error.response';
 import { Profile } from '../../entities/profile.entity';
 import { User, UserRole } from '../../entities/user.entity';
 import { UpdateRoleDto } from './dto/update-role.dt';
-import { PaginationDto } from './dto/get-user.dto';
+import { findAllQuery } from './dto/get-user.dto';
 
 @Injectable()
 export class UserService {
@@ -62,12 +62,25 @@ export class UserService {
   }
 
 
-  async findAll(page: number): Promise<{ users: User[], meta: { count: number, allPages: number } }> {
+  async findAll(page: number, sort?: 1 | 0, filter?: { email: string, username: string }): Promise<{ users: User[], meta: { count: number, allPages: number } }> {
     const limit = 10;
     const offset = (page - 1) * limit;
 
     try {
-      const [users, count] = await this.em.findAndCount(User, {}, { offset, limit, populate: ['profiles'] });
+      // if sort query exsist sort
+      const sortBy = sort === 1 ? "ASC" : "DESC"
+
+      let filterQuery: FilterQuery<User> = {}
+
+      // if filter exsist filter on them
+      for (const key in filter) {
+        if (filter[key]) {
+          filterQuery[key] = { $like: `%${filter[key]}%` }
+        }
+      }
+
+      const [users, count] = await this.em.findAndCount(User, filterQuery, { offset, limit, populate: ['profiles'], orderBy: { createdAt: sortBy } });
+
       return {
         users,
         meta: {
