@@ -1,14 +1,13 @@
 import { BadGatewayException, BadRequestException, ConflictException, HttpException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { EntityManager, FilterQuery, NotFoundError, UniqueConstraintViolationException, wrap } from '@mikro-orm/mysql';
-import { createReadStream, createWriteStream, existsSync, ReadStream } from 'fs';
+import { createReadStream, existsSync, ReadStream } from 'fs';
 import { rm } from 'fs/promises'
-import { extname } from 'path';
 import { ErrorMessages } from '../../responses/error.response';
 import { Profile } from '../../entities/profile.entity';
 import { User, UserRole } from '../../entities/user.entity';
 import { UpdateRoleDto } from './dto/update-role.dt';
-import { findAllQuery } from './dto/get-user.dto';
+import { UtilService } from '../utils/util.service';
 
 @Injectable()
 export class UserService {
@@ -16,7 +15,7 @@ export class UserService {
 
   private readonly logger = new Logger(UserService.name);
 
-  constructor(private readonly em: EntityManager) { }
+  constructor(private readonly em: EntityManager, protected readonly util: UtilService) { }
 
   async getProfilePicture(filename: string, userId: number, role: UserRole): Promise<ReadStream> {
     // check User Role if Not Admin Authorize them
@@ -39,13 +38,11 @@ export class UserService {
   async storeProfilePicture(profile: Express.Multer.File, user: number): Promise<{ msg: string, fileName: string }> {
     try {
       // working with stream
-      const ext = extname(profile.originalname);
-
-      const fileName = `${Math.ceil(Math.random() * 1e8 * Date.now())}${ext}`
+      const fileName = this.util.createUniqueFileName(profile);
       const filePath = this.baseProfilePath + fileName
 
-      const stream = createWriteStream(filePath)
-      stream.write(profile.buffer)
+      // write into File
+      this.util.writeFile(filePath, profile.buffer);
 
       this.em.create(Profile, {
         src: fileName,
@@ -180,17 +177,21 @@ export class UserService {
 
   async removeFileName(filename: string): Promise<{ msg: string }> {
     const filePath = this.baseProfilePath + filename;
+
     const isFileExsist = existsSync(filePath)
 
-    if (!isFileExsist)
-      throw new BadRequestException("profile not found")
-
     try {
-      await rm(filePath)
+      // remove file
+      if (isFileExsist)
+        await rm(filePath)
+
       const profile = await this.em.findOne(Profile, { src: filename })
 
-      if (profile)
-        await this.em.removeAndFlush(profile)
+      if (!profile && !isFileExsist)
+        throw new NotFoundException("profile not found")
+
+      // if profile exsist remove them
+      profile && await this.em.removeAndFlush(profile)
 
       return { msg: "successfully Removed" }
     } catch (err) {
