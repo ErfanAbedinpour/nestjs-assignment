@@ -1,11 +1,10 @@
 import { Type } from "class-transformer";
 import { IsIn, IsNumber, IsOptional, IsString, Min } from "class-validator";
 
-export class findAllQuery {
-    @Type(() => Number)
-    @IsNumber()
-    @IsOptional()
+export class FindAllTaskQuery {
     @Min(1)
+    @Type(() => Number)
+    @IsOptional()
     page: number
 
     @IsOptional()
@@ -14,15 +13,12 @@ export class findAllQuery {
     limit: number
 
     @IsOptional()
-    @Type(() => Number)
-    @IsIn([1, 0], { message: "value for sort must be 0 or 1" })
-    @IsNumber()
-    sort: 1 | 0
-
-    @IsOptional()
     @IsString()
-    email: string
+    name: string
 
     @IsOptional()
-    username: string
+    @Type(() => Number)
+    @IsNumber()
+    @IsIn([1, 0], { message: "sort must be 1 or 0" })
+    sort: 1 | 0
 }

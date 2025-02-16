@@ -179,7 +179,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    // \"username\":\"test\",\n    // \"password\":\"Test12341324\"\n    \"username\":\"test1\",\n    \"password\":\"Test12341234\"\n}",
+							"raw": "{\n    \"username\":\"test\",\n   \"password\":\"Test12341324\"\n\n    // \"username\":\"test1\",\n    // \"password\":\"Test12341234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -964,7 +964,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2NDkwOTcsImV4cCI6MTczOTY1MDg5N30.kSBiLWpek3WcteYk2Kn6v5Z9G0W2Y-VSNSiB1rDpd_s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwicm9sZSI6InVzZXIiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE3Mzk3MTA5ODMsImV4cCI6MTczOTcxMjc4M30.071MRZg_DWv0bNbgb4B2s-A-mDOiu5dsJrPDpwuUA4w",
 									"type": "string"
 								}
 							]
@@ -972,14 +972,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/user/",
+							"raw": "{{baseUrl}}/api/user?sort=1",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
-								"user",
-								""
+								"user"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1096,7 +1101,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/api/user?page=2",
+									"raw": "{{baseUrl}}/api/user?page=2&limit=4",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -1108,6 +1113,10 @@
 										{
 											"key": "page",
 											"value": "2"
+										},
+										{
+											"key": "limit",
+											"value": "4"
 										}
 									]
 								}
@@ -1147,6 +1156,184 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"users\": [],\n    \"meta\": {\n        \"allPages\": 1,\n        \"count\": 5\n    }\n}"
+						},
+						{
+							"name": "sort",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user?sort=0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1539"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"603-/1c9QYB+p1ubZVS8qjeHr5aIRe0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 12:23:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": 11,\n            \"createdAt\": \"1739695709864\",\n            \"updatedAt\": \"1739695709864\",\n            \"email\": \"testmail2353@gmail.com\",\n            \"phone\": \"091121772021\",\n            \"username\": \"test13\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 10,\n            \"createdAt\": \"1739645135783\",\n            \"updatedAt\": \"1739645135783\",\n            \"email\": \"testmail233@gmail.com\",\n            \"phone\": \"09112177201\",\n            \"username\": \"test1\",\n            \"role\": \"admin\",\n            \"profiles\": [\n                {\n                    \"id\": 7,\n                    \"createdAt\": \"1739686904126\",\n                    \"updatedAt\": \"1739686904126\",\n                    \"src\": \"140755759545285970000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 6,\n                    \"createdAt\": \"1739685775146\",\n                    \"updatedAt\": \"1739685775146\",\n                    \"src\": \"165441336721896340000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 4,\n                    \"createdAt\": \"1739645182386\",\n                    \"updatedAt\": \"1739645182386\",\n                    \"src\": \"114452701136144070000.jpg\",\n                    \"user\": 10\n                }\n            ]\n        },\n        {\n            \"id\": 9,\n            \"createdAt\": \"1739627564382\",\n            \"updatedAt\": \"1739627564382\",\n            \"email\": \"testmail23@gmail.com\",\n            \"phone\": \"09112177206\",\n            \"username\": \"test\",\n            \"role\": \"user\",\n            \"profiles\": [\n                {\n                    \"id\": 3,\n                    \"createdAt\": \"1739643723915\",\n                    \"updatedAt\": \"1739643723915\",\n                    \"src\": \"147197520479905480000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 2,\n                    \"createdAt\": \"1739643683839\",\n                    \"updatedAt\": \"1739643683839\",\n                    \"src\": \"26345653617868935000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 1,\n                    \"createdAt\": \"1739643660137\",\n                    \"updatedAt\": \"1739643660137\",\n                    \"src\": \"57900498957878540000.jpeg\",\n                    \"user\": 9\n                }\n            ]\n        },\n        {\n            \"id\": 8,\n            \"createdAt\": \"1739624893658\",\n            \"updatedAt\": \"1739624893658\",\n            \"email\": \"testmail2@gmail.com\",\n            \"phone\": \"09112177205\",\n            \"username\": \"test-12\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 7,\n            \"createdAt\": \"1739624811745\",\n            \"updatedAt\": \"1739697846123\",\n            \"email\": \"azizmmdi@gmail.com\",\n            \"phone\": \"12341234123\",\n            \"username\": \"azizmmdi@gmail.com\",\n            \"role\": \"user\",\n            \"profiles\": []\n        }\n    ],\n    \"meta\": {\n        \"allPages\": 1,\n        \"count\": 5\n    }\n}"
+						},
+						{
+							"name": "filterByUsername",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user?username=test&sort=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "test"
+										},
+										{
+											"key": "sort",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1363"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"553-lk3e1CHKlmyZLGtA5mSyQ1zfpDk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 12:27:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": 8,\n            \"createdAt\": \"1739624893658\",\n            \"updatedAt\": \"1739624893658\",\n            \"email\": \"testmail2@gmail.com\",\n            \"phone\": \"09112177205\",\n            \"username\": \"test-12\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 9,\n            \"createdAt\": \"1739627564382\",\n            \"updatedAt\": \"1739627564382\",\n            \"email\": \"testmail23@gmail.com\",\n            \"phone\": \"09112177206\",\n            \"username\": \"test\",\n            \"role\": \"user\",\n            \"profiles\": [\n                {\n                    \"id\": 1,\n                    \"createdAt\": \"1739643660137\",\n                    \"updatedAt\": \"1739643660137\",\n                    \"src\": \"57900498957878540000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 2,\n                    \"createdAt\": \"1739643683839\",\n                    \"updatedAt\": \"1739643683839\",\n                    \"src\": \"26345653617868935000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 3,\n                    \"createdAt\": \"1739643723915\",\n                    \"updatedAt\": \"1739643723915\",\n                    \"src\": \"147197520479905480000.jpeg\",\n                    \"user\": 9\n                }\n            ]\n        },\n        {\n            \"id\": 10,\n            \"createdAt\": \"1739645135783\",\n            \"updatedAt\": \"1739645135783\",\n            \"email\": \"testmail233@gmail.com\",\n            \"phone\": \"09112177201\",\n            \"username\": \"test1\",\n            \"role\": \"admin\",\n            \"profiles\": [\n                {\n                    \"id\": 4,\n                    \"createdAt\": \"1739645182386\",\n                    \"updatedAt\": \"1739645182386\",\n                    \"src\": \"114452701136144070000.jpg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 6,\n                    \"createdAt\": \"1739685775146\",\n                    \"updatedAt\": \"1739685775146\",\n                    \"src\": \"165441336721896340000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 7,\n                    \"createdAt\": \"1739686904126\",\n                    \"updatedAt\": \"1739686904126\",\n                    \"src\": \"140755759545285970000.jpeg\",\n                    \"user\": 10\n                }\n            ]\n        },\n        {\n            \"id\": 11,\n            \"createdAt\": \"1739695709864\",\n            \"updatedAt\": \"1739695709864\",\n            \"email\": \"testmail2353@gmail.com\",\n            \"phone\": \"091121772021\",\n            \"username\": \"test13\",\n            \"role\": \"user\",\n            \"profiles\": []\n        }\n    ],\n    \"meta\": {\n        \"allPages\": 1,\n        \"count\": 4\n    }\n}"
+						},
+						{
+							"name": "filterByEmail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/user?email=gmail.com",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"user"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "gmail.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1539"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"603-LiNuT5I8qhTimhOFtc0p7lyJ0jo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Feb 2025 12:27:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": 7,\n            \"createdAt\": \"1739624811745\",\n            \"updatedAt\": \"1739697846123\",\n            \"email\": \"azizmmdi@gmail.com\",\n            \"phone\": \"12341234123\",\n            \"username\": \"azizmmdi@gmail.com\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 8,\n            \"createdAt\": \"1739624893658\",\n            \"updatedAt\": \"1739624893658\",\n            \"email\": \"testmail2@gmail.com\",\n            \"phone\": \"09112177205\",\n            \"username\": \"test-12\",\n            \"role\": \"user\",\n            \"profiles\": []\n        },\n        {\n            \"id\": 9,\n            \"createdAt\": \"1739627564382\",\n            \"updatedAt\": \"1739627564382\",\n            \"email\": \"testmail23@gmail.com\",\n            \"phone\": \"09112177206\",\n            \"username\": \"test\",\n            \"role\": \"user\",\n            \"profiles\": [\n                {\n                    \"id\": 1,\n                    \"createdAt\": \"1739643660137\",\n                    \"updatedAt\": \"1739643660137\",\n                    \"src\": \"57900498957878540000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 2,\n                    \"createdAt\": \"1739643683839\",\n                    \"updatedAt\": \"1739643683839\",\n                    \"src\": \"26345653617868935000.jpeg\",\n                    \"user\": 9\n                },\n                {\n                    \"id\": 3,\n                    \"createdAt\": \"1739643723915\",\n                    \"updatedAt\": \"1739643723915\",\n                    \"src\": \"147197520479905480000.jpeg\",\n                    \"user\": 9\n                }\n            ]\n        },\n        {\n            \"id\": 10,\n            \"createdAt\": \"1739645135783\",\n            \"updatedAt\": \"1739645135783\",\n            \"email\": \"testmail233@gmail.com\",\n            \"phone\": \"09112177201\",\n            \"username\": \"test1\",\n            \"role\": \"admin\",\n            \"profiles\": [\n                {\n                    \"id\": 4,\n                    \"createdAt\": \"1739645182386\",\n                    \"updatedAt\": \"1739645182386\",\n                    \"src\": \"114452701136144070000.jpg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 6,\n                    \"createdAt\": \"1739685775146\",\n                    \"updatedAt\": \"1739685775146\",\n                    \"src\": \"165441336721896340000.jpeg\",\n                    \"user\": 10\n                },\n                {\n                    \"id\": 7,\n                    \"createdAt\": \"1739686904126\",\n                    \"updatedAt\": \"1739686904126\",\n                    \"src\": \"140755759545285970000.jpeg\",\n                    \"user\": 10\n                }\n            ]\n        },\n        {\n            \"id\": 11,\n            \"createdAt\": \"1739695709864\",\n            \"updatedAt\": \"1739695709864\",\n            \"email\": \"testmail2353@gmail.com\",\n            \"phone\": \"091121772021\",\n            \"username\": \"test13\",\n            \"role\": \"user\",\n            \"profiles\": []\n        }\n    ],\n    \"meta\": {\n        \"allPages\": 1,\n        \"count\": 5\n    }\n}"
 						}
 					]
 				},
@@ -2577,7 +2764,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoidGVzdDEiLCJpYXQiOjE3Mzk2OTAyNjEsImV4cCI6MTczOTY5MjA2MX0.-DWu7CU1843CgmO9vy0jYelFJUMQWDjnG4MwuqigruI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwicm9sZSI6InVzZXIiLCJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE3Mzk3MTA5ODMsImV4cCI6MTczOTcxMjc4M30.071MRZg_DWv0bNbgb4B2s-A-mDOiu5dsJrPDpwuUA4w",
 									"type": "string"
 								}
 							]
@@ -2606,7 +2793,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/task?page=1",
+							"raw": "{{baseUrl}}/api/task?name=tes",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -2616,8 +2803,8 @@
 							],
 							"query": [
 								{
-									"key": "page",
-									"value": "1"
+									"key": "name",
+									"value": "tes"
 								}
 							]
 						}
@@ -2703,9 +2890,9 @@
 							"body": "{\n    \"tasks\": [\n        {\n            \"id\": 16,\n            \"createdAt\": \"1739687713328\",\n            \"updatedAt\": \"1739687713328\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 17,\n            \"createdAt\": \"1739687803965\",\n            \"updatedAt\": \"1739687803965\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 18,\n            \"createdAt\": \"1739687815172\",\n            \"updatedAt\": \"1739687815172\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 19,\n            \"createdAt\": \"1739687838551\",\n            \"updatedAt\": \"1739687838551\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 20,\n            \"createdAt\": \"1739687856520\",\n            \"updatedAt\": \"1739687856520\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 21,\n            \"createdAt\": \"1739687896684\",\n            \"updatedAt\": \"1739687896684\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 15,\n                    \"createdAt\": \"1739687896689\",\n                    \"updatedAt\": \"1739687896689\",\n                    \"src\": \"6599329586654647000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 22,\n            \"createdAt\": \"1739687991881\",\n            \"updatedAt\": \"1739687991881\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 16,\n                    \"createdAt\": \"1739687991884\",\n                    \"updatedAt\": \"1739687991884\",\n                    \"src\": \"95128822199102550000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 23,\n            \"createdAt\": \"1739688013111\",\n            \"updatedAt\": \"1739688013111\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 17,\n                    \"createdAt\": \"1739688013111\",\n                    \"updatedAt\": \"1739688013111\",\n                    \"src\": \"165464675370771940000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 24,\n            \"createdAt\": \"1739688049279\",\n            \"updatedAt\": \"1739688049279\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 18,\n                    \"createdAt\": \"1739688049282\",\n                    \"updatedAt\": \"1739688049282\",\n                    \"src\": \"14536997776865260000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 25,\n            \"createdAt\": \"1739688976676\",\n            \"updatedAt\": \"1739688976676\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 19,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"112165085497142400000.jpeg\"\n                },\n                {\n                    \"id\": 20,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"36495151652542157000.jpg\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"count\": 10,\n        \"allPages\": 2,\n        \"countAll\": 16\n    }\n}"
 						},
 						{
-							"name": "unAuth Copy",
+							"name": "sort",
 							"originalRequest": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -2723,23 +2910,30 @@
 										{
 											"key": "attached",
 											"type": "file",
-											"src": "/home/erfan/Downloads/download (1).jpeg"
+											"src": "/home/erfan/Downloads/download.html",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/task",
+									"raw": "{{baseUrl}}/api/task?sort=1",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
 										"task"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "1"
+										}
 									]
 								}
 							},
-							"status": "Unauthorized",
-							"code": 401,
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -2752,15 +2946,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "80"
+									"value": "2402"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+									"value": "W/\"962-1dgQESVXRsQ2bz3nA3RmyqS9jzY\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+									"value": "Sun, 16 Feb 2025 13:00:41 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2772,12 +2966,12 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+							"body": "{\n    \"tasks\": [\n        {\n            \"id\": 16,\n            \"createdAt\": \"1739687713328\",\n            \"updatedAt\": \"1739691147752\",\n            \"name\": \"helloWOrold\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 17,\n            \"createdAt\": \"1739687803965\",\n            \"updatedAt\": \"1739687803965\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 18,\n            \"createdAt\": \"1739687815172\",\n            \"updatedAt\": \"1739687815172\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 19,\n            \"createdAt\": \"1739687838551\",\n            \"updatedAt\": \"1739687838551\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 21,\n            \"createdAt\": \"1739687896684\",\n            \"updatedAt\": \"1739687896684\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 15,\n                    \"createdAt\": \"1739687896689\",\n                    \"updatedAt\": \"1739687896689\",\n                    \"src\": \"6599329586654647000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 22,\n            \"createdAt\": \"1739687991881\",\n            \"updatedAt\": \"1739687991881\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 16,\n                    \"createdAt\": \"1739687991884\",\n                    \"updatedAt\": \"1739687991884\",\n                    \"src\": \"95128822199102550000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 23,\n            \"createdAt\": \"1739688013111\",\n            \"updatedAt\": \"1739688013111\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 17,\n                    \"createdAt\": \"1739688013111\",\n                    \"updatedAt\": \"1739688013111\",\n                    \"src\": \"165464675370771940000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 24,\n            \"createdAt\": \"1739688049279\",\n            \"updatedAt\": \"1739688049279\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": []\n        },\n        {\n            \"id\": 25,\n            \"createdAt\": \"1739688976676\",\n            \"updatedAt\": \"1739688976676\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 19,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"112165085497142400000.jpeg\"\n                },\n                {\n                    \"id\": 20,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"36495151652542157000.jpg\"\n                }\n            ]\n        },\n        {\n            \"id\": 26,\n            \"createdAt\": \"1739689033921\",\n            \"updatedAt\": \"1739689033921\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 21,\n                    \"createdAt\": \"1739689033926\",\n                    \"updatedAt\": \"1739689033926\",\n                    \"src\": \"135412503294072520000.jpeg\"\n                },\n                {\n                    \"id\": 22,\n                    \"createdAt\": \"1739689033927\",\n                    \"updatedAt\": \"1739689033927\",\n                    \"src\": \"155262253904975460000.jpg\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"count\": 10,\n        \"allPages\": 2,\n        \"countAll\": 18\n    }\n}"
 						},
 						{
-							"name": "unAuth Copy",
+							"name": "pagination",
 							"originalRequest": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -2795,23 +2989,34 @@
 										{
 											"key": "attached",
 											"type": "file",
-											"src": "/home/erfan/Downloads/download (1).jpeg"
+											"src": "/home/erfan/Downloads/download.html",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/task",
+									"raw": "{{baseUrl}}/api/task?page=1&limit=2",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
 										"task"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
 									]
 								}
 							},
-							"status": "Unauthorized",
-							"code": 401,
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -2824,15 +3029,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "80"
+									"value": "988"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+									"value": "W/\"3dc-F2B9hwa18t7zHxoT3/hZS3k9KbM\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+									"value": "Sun, 16 Feb 2025 13:01:35 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2844,12 +3049,12 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+							"body": "{\n    \"tasks\": [\n        {\n            \"id\": 38,\n            \"createdAt\": \"1739697295356\",\n            \"updatedAt\": \"1739697295356\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 51,\n                    \"createdAt\": \"1739697295359\",\n                    \"updatedAt\": \"1739697295359\",\n                    \"src\": \"10569470148720239000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 37,\n            \"createdAt\": \"1739696948726\",\n            \"updatedAt\": \"1739696948726\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 47,\n                    \"createdAt\": \"1739696948729\",\n                    \"updatedAt\": \"1739696948729\",\n                    \"src\": \"85035764556954370000.jpeg\"\n                },\n                {\n                    \"id\": 48,\n                    \"createdAt\": \"1739697041735\",\n                    \"updatedAt\": \"1739697041735\",\n                    \"src\": \"102019900707643830000.jpeg\"\n                },\n                {\n                    \"id\": 49,\n                    \"createdAt\": \"1739697083541\",\n                    \"updatedAt\": \"1739697083541\",\n                    \"src\": \"110181812553142190000.jpeg\"\n                },\n                {\n                    \"id\": 50,\n                    \"createdAt\": \"1739697095870\",\n                    \"updatedAt\": \"1739697095870\",\n                    \"src\": \"141054070047013100000.jpeg\"\n                },\n                {\n                    \"id\": 52,\n                    \"createdAt\": \"1739697331047\",\n                    \"updatedAt\": \"1739697331047\",\n                    \"src\": \"75294404245579300000.jpeg\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"count\": 2,\n        \"allPages\": 9,\n        \"countAll\": 18\n    }\n}"
 						},
 						{
-							"name": "unAuth Copy",
+							"name": "filter",
 							"originalRequest": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -2867,95 +3072,30 @@
 										{
 											"key": "attached",
 											"type": "file",
-											"src": "/home/erfan/Downloads/download (1).jpeg"
+											"src": "/home/erfan/Downloads/download.html",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/api/task",
+									"raw": "{{baseUrl}}/api/task?name=tes",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"api",
 										"task"
-									]
-								}
-							},
-							"status": "Unauthorized",
-							"code": 401,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "80"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
-						},
-						{
-							"name": "unAuth Copy",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
+									],
+									"query": [
 										{
 											"key": "name",
-											"value": "this is test2",
-											"type": "text"
-										},
-										{
-											"key": "description",
-											"value": "this is tetst description for test2",
-											"type": "text"
-										},
-										{
-											"key": "attached",
-											"type": "file",
-											"src": "/home/erfan/Downloads/download (1).jpeg"
+											"value": "tes"
 										}
-									]
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/task",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"task"
 									]
 								}
 							},
-							"status": "Unauthorized",
-							"code": 401,
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -2968,15 +3108,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "80"
+									"value": "4095"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"50-jI6sUTfpC1evLNeHmXbho/zIB+M\""
+									"value": "W/\"fff-H/jodanPjjjeAliun/JgLNlQMcA\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 16 Feb 2025 09:16:32 GMT"
+									"value": "Sun, 16 Feb 2025 13:02:04 GMT"
 								},
 								{
 									"key": "Connection",
@@ -2988,7 +3128,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"please enter bearer Header\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+							"body": "{\n    \"tasks\": [\n        {\n            \"id\": 38,\n            \"createdAt\": \"1739697295356\",\n            \"updatedAt\": \"1739697295356\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 51,\n                    \"createdAt\": \"1739697295359\",\n                    \"updatedAt\": \"1739697295359\",\n                    \"src\": \"10569470148720239000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 37,\n            \"createdAt\": \"1739696948726\",\n            \"updatedAt\": \"1739696948726\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 47,\n                    \"createdAt\": \"1739696948729\",\n                    \"updatedAt\": \"1739696948729\",\n                    \"src\": \"85035764556954370000.jpeg\"\n                },\n                {\n                    \"id\": 48,\n                    \"createdAt\": \"1739697041735\",\n                    \"updatedAt\": \"1739697041735\",\n                    \"src\": \"102019900707643830000.jpeg\"\n                },\n                {\n                    \"id\": 49,\n                    \"createdAt\": \"1739697083541\",\n                    \"updatedAt\": \"1739697083541\",\n                    \"src\": \"110181812553142190000.jpeg\"\n                },\n                {\n                    \"id\": 50,\n                    \"createdAt\": \"1739697095870\",\n                    \"updatedAt\": \"1739697095870\",\n                    \"src\": \"141054070047013100000.jpeg\"\n                },\n                {\n                    \"id\": 52,\n                    \"createdAt\": \"1739697331047\",\n                    \"updatedAt\": \"1739697331047\",\n                    \"src\": \"75294404245579300000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 36,\n            \"createdAt\": \"1739696302797\",\n            \"updatedAt\": \"1739696302797\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 46,\n                    \"createdAt\": \"1739696302799\",\n                    \"updatedAt\": \"1739696302799\",\n                    \"src\": \"108937521091568830000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 35,\n            \"createdAt\": \"1739690321478\",\n            \"updatedAt\": \"1739690321478\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 42,\n                    \"createdAt\": \"1739690321479\",\n                    \"updatedAt\": \"1739690321479\",\n                    \"src\": \"48469827334140820000.jpeg\"\n                },\n                {\n                    \"id\": 43,\n                    \"createdAt\": \"1739690321480\",\n                    \"updatedAt\": \"1739690321480\",\n                    \"src\": \"96903263350599610000.jpeg\"\n                },\n                {\n                    \"id\": 44,\n                    \"createdAt\": \"1739690321480\",\n                    \"updatedAt\": \"1739690321480\",\n                    \"src\": \"53353995985027810000.jpeg\"\n                },\n                {\n                    \"id\": 45,\n                    \"createdAt\": \"1739690321480\",\n                    \"updatedAt\": \"1739690321480\",\n                    \"src\": \"19039076754568126000.jpg\"\n                }\n            ]\n        },\n        {\n            \"id\": 30,\n            \"createdAt\": \"1739689068526\",\n            \"updatedAt\": \"1739689068526\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 30,\n                    \"createdAt\": \"1739689068527\",\n                    \"updatedAt\": \"1739689068527\",\n                    \"src\": \"2199818300374695200.jpeg\"\n                },\n                {\n                    \"id\": 53,\n                    \"createdAt\": \"1739697338966\",\n                    \"updatedAt\": \"1739697338966\",\n                    \"src\": \"33887225133349090000.jpeg\"\n                },\n                {\n                    \"id\": 29,\n                    \"createdAt\": \"1739689068527\",\n                    \"updatedAt\": \"1739689068527\",\n                    \"src\": \"15236907572108788000.jpeg\"\n                }\n            ]\n        },\n        {\n            \"id\": 29,\n            \"createdAt\": \"1739689060988\",\n            \"updatedAt\": \"1739689060988\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 27,\n                    \"createdAt\": \"1739689060989\",\n                    \"updatedAt\": \"1739689060989\",\n                    \"src\": \"49335633601050330000.jpeg\"\n                },\n                {\n                    \"id\": 28,\n                    \"createdAt\": \"1739689060989\",\n                    \"updatedAt\": \"1739689060989\",\n                    \"src\": \"29644987260632416000.jpg\"\n                }\n            ]\n        },\n        {\n            \"id\": 28,\n            \"createdAt\": \"1739689058459\",\n            \"updatedAt\": \"1739689058459\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 25,\n                    \"createdAt\": \"1739689058459\",\n                    \"updatedAt\": \"1739689058459\",\n                    \"src\": \"151174617032644800000.jpeg\"\n                },\n                {\n                    \"id\": 26,\n                    \"createdAt\": \"1739689058459\",\n                    \"updatedAt\": \"1739689058459\",\n                    \"src\": \"8429271891421016000.jpg\"\n                }\n            ]\n        },\n        {\n            \"id\": 27,\n            \"createdAt\": \"1739689050889\",\n            \"updatedAt\": \"1739689050889\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 23,\n                    \"createdAt\": \"1739689050892\",\n                    \"updatedAt\": \"1739689050892\",\n                    \"src\": \"94854349990190380.jpeg\"\n                },\n                {\n                    \"id\": 24,\n                    \"createdAt\": \"1739689050893\",\n                    \"updatedAt\": \"1739689050893\",\n                    \"src\": \"98478353799372910000.jpg\"\n                }\n            ]\n        },\n        {\n            \"id\": 26,\n            \"createdAt\": \"1739689033921\",\n            \"updatedAt\": \"1739689033921\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 21,\n                    \"createdAt\": \"1739689033926\",\n                    \"updatedAt\": \"1739689033926\",\n                    \"src\": \"135412503294072520000.jpeg\"\n                },\n                {\n                    \"id\": 22,\n                    \"createdAt\": \"1739689033927\",\n                    \"updatedAt\": \"1739689033927\",\n                    \"src\": \"155262253904975460000.jpg\"\n                }\n            ]\n        },\n        {\n            \"id\": 25,\n            \"createdAt\": \"1739688976676\",\n            \"updatedAt\": \"1739688976676\",\n            \"name\": \"this is test2\",\n            \"description\": \"this is tetst description for test2\",\n            \"user\": 10,\n            \"attached\": [\n                {\n                    \"id\": 19,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"112165085497142400000.jpeg\"\n                },\n                {\n                    \"id\": 20,\n                    \"createdAt\": \"1739688976678\",\n                    \"updatedAt\": \"1739688976678\",\n                    \"src\": \"36495151652542157000.jpg\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"count\": 10,\n        \"allPages\": 2,\n        \"countAll\": 17\n    }\n}"
 						}
 					]
 				},
