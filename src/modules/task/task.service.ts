@@ -16,8 +16,6 @@ export class TaskService {
   constructor(private readonly em: EntityManager) { }
   async create({ description, name }: CreateTaskDto, fileAttached: Express.Multer.File, userId: number) {
 
-
-
     // create unique Name For each File and store as a stream
     const ext = extname(fileAttached.originalname);
     const fileName = `${Math.ceil(Math.random() * 1e8 * Date.now())}${ext}`
@@ -46,8 +44,19 @@ export class TaskService {
     }
   }
 
-  findAll() {
-    return `This action returns all task`;
+  async findAll(page: number, userId: number) {
+    const limit = 10;
+    const offset = (page - 1) * limit;
+
+    const [tasks, count] = await this.em.findAndCount(Task, { user: userId }, { offset, limit, populate: ['attached'] })
+
+    return {
+      tasks,
+      meta: {
+        allPages: Math.ceil(count / limit),
+        count,
+      }
+    }
   }
 
   findOne(id: number) {

@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, HttpStatus, ParseFilePipeBuilder, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, HttpStatus, ParseFilePipeBuilder, UploadedFile, Query } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
 import { getUser } from '../auth/decorator/getUser.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { PaginationDto } from '../user/dto/get-user.dto';
 
 @Controller('task')
 @Auth([AuthStrategy.Bearer])
@@ -23,8 +24,8 @@ export class TaskController {
   }
 
   @Get()
-  findAll() {
-    return this.taskService.findAll();
+  findAll(@Query() { page }: PaginationDto, @getUser("id") userId: number) {
+    return this.taskService.findAll(Number(page ?? 1), userId);
   }
 
   @Get(':id')
