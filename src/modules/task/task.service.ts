@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { EntityManager, NotFoundError, wrap } from '@mikro-orm/mysql';
+import { EntityManager, FilterQuery, NotFoundError, wrap } from '@mikro-orm/mysql';
 import { Task } from '../../entities/task.entity';
 import { ErrorMessages } from '../../responses/error.response';
 import { createReadStream, existsSync, ReadStream } from 'fs';
@@ -46,17 +46,27 @@ export class TaskService {
   }
 
   // findAll Task
-  async findAll(page: number, userId: number) {
-    const limit = 10;
-    const offset = (page - 1) * limit;
+  async findAll({ page, limit }: { page: number, limit: number }, userId: number, sort?: 0 | 1, filter?: { name: string }) {
+    const limitRow = limit || 10;
+    const offset = (page - 1) * limitRow;
 
-    const [tasks, count] = await this.em.findAndCount(Task, { user: userId }, { offset, limit, populate: ['attached'] })
+    const orderBy = sort === 1 ? "ASC" : "DESC";
+
+    const filterQuery: FilterQuery<Task> = { user: userId };
+
+    for (const key in filter) {
+      if (filter[key]) {
+        filterQuery[key] = { $like: `%${filter[key]}%` }
+      }
+    }
+
+    const [tasks, count] = await this.em.findAndCount(Task, filterQuery, { offset, limit: limitRow, populate: ['attached'], orderBy: { createdAt: orderBy } })
 
     return {
       tasks,
       meta: {
         count: tasks.length,
-        allPages: Math.ceil(count / limit),
+        allPages: Math.ceil(count / limitRow),
         countAll: count,
       }
     }

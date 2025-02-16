@@ -5,7 +5,7 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
 import { getUser } from '../auth/decorator/getUser.decorator';
 import { FilesInterceptor } from '@nestjs/platform-express';
-import { PaginationDto } from '../user/dto/get-user.dto';
+import { FindAllTaskQuery } from './dto/file-task.dto';
 
 @Controller('task')
 @Auth([AuthStrategy.Bearer])
@@ -26,8 +26,8 @@ export class TaskController {
   }
 
   @Get()
-  findAll(@Query() { page }: PaginationDto, @getUser("id") userId: number) {
-    return this.taskService.findAll(Number(page ?? 1), userId);
+  findAll(@Query() query: FindAllTaskQuery, @getUser("id") userId: number) {
+    return this.taskService.findAll({ page: query.page, limit: query.limit }, userId, query.sort, { name: query.name });
   }
 
   @Get(':id')
