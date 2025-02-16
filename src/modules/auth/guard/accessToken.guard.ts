@@ -1,4 +1,4 @@
-import { BadRequestException, CanActivate, ExecutionContext, ForbiddenException, HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { BadRequestException, CanActivate, ExecutionContext, ForbiddenException, HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Request } from "express";
 import { Observable } from "rxjs";
 import { AccessTokenService } from "../tokenService/accessToken.service";
@@ -17,7 +17,7 @@ export class AccessTokenGuard implements CanActivate {
         const request = context.switchToHttp().getRequest<Request>();
         const token = this.getAuthHeader(request);
         if (!token)
-            throw new ForbiddenException(this.INVALID_HEADER)
+            throw new UnauthorizedException(this.INVALID_HEADER)
 
         try {
 
@@ -26,7 +26,7 @@ export class AccessTokenGuard implements CanActivate {
 
         } catch (err) {
             if (err instanceof JsonWebTokenError) {
-                throw new ForbiddenException(this.INVALID_TOKEN)
+                throw new UnauthorizedException(this.INVALID_TOKEN)
             }
         }
 
