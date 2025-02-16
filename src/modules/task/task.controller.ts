@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, HttpStatus, ParseFilePipeBuilder, UploadedFile, Query, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, Query, ParseIntPipe, Res, UploadedFiles, ParseFilePipe, MaxFileSizeValidator, FileTypeValidator, Put, UploadedFile } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
 import { getUser } from '../auth/decorator/getUser.decorator';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { PaginationDto } from '../user/dto/get-user.dto';
 
 @Controller('task')
@@ -13,13 +13,15 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) { }
 
   @Post()
-  @UseInterceptors(FileInterceptor('attached'))
-  create(@UploadedFile(
-    new ParseFilePipeBuilder()
-      // .addFileTypeValidator({ fileType: "jpeg" })
-      .addMaxSizeValidator({ maxSize: 3 * 1024 * 1024, message: "file must be lower than 3Mb" })
-      .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY })
-  ) attached: Express.Multer.File, @Body() createTaskDto: CreateTaskDto, @getUser("id") userId: number) {
+  @UseInterceptors(FilesInterceptor("attached", 4))
+  create(@UploadedFiles(
+    new ParseFilePipe({
+      validators: [
+        new FileTypeValidator({ fileType: /^image\/(jpeg|png|gif)$/ }),
+        new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024, message: "file must be lower than 5Mb" })
+      ]
+    })
+  ) attached: Express.Multer.File[], @Body() createTaskDto: CreateTaskDto, @getUser("id") userId: number) {
     return this.taskService.create(createTaskDto, attached, userId);
   }
 
@@ -34,12 +36,13 @@ export class TaskController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.taskService.update(+id, updateTaskDto);
+  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto, @getUser("id") userId: number) {
+    return this.taskService.update(+id, userId, updateTaskDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.taskService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @getUser("id") userId: number) {
+    return this.taskService.remove(+id, userId);
   }
+
 }
