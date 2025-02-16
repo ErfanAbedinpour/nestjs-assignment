@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { EntityManager, NotFoundError } from '@mikro-orm/mysql';
@@ -59,8 +59,13 @@ export class TaskService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  async findOne(id: number, userId: number) {
+    const task = await this.em.findOne(Task, { $and: [{ id }, { user: userId }] }, { populate: ['user'] });
+    if (!task)
+      throw new BadRequestException(ErrorMessages.TASK_NOTFOUND)
+
+    return task;
+
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {

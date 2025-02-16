@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, HttpStatus, ParseFilePipeBuilder, UploadedFile, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, HttpStatus, ParseFilePipeBuilder, UploadedFile, Query, ParseIntPipe } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -29,8 +29,8 @@ export class TaskController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.taskService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number, @getUser("id") userId: number) {
+    return this.taskService.findOne(+id, userId);
   }
 
   @Patch(':id')
