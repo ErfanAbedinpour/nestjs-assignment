@@ -8,7 +8,7 @@ import { ErrorMessages } from '../../responses/error.response';
 import { Profile } from '../../entities/profile.entity';
 import { User, UserRole } from '../../entities/user.entity';
 import { UpdateRoleDto } from './dto/update-role.dt';
-import { GetUserDto } from './dto/get-user.dto';
+import { PaginationDto } from './dto/get-user.dto';
 
 @Injectable()
 export class UserService {

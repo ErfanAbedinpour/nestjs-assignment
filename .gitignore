@@ -3,6 +3,8 @@
 /node_modules
 /build
 temp
+src/public/attached/*
+src/public/profile/*
 # Logs
 logs
 *.log

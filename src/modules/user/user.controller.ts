@@ -9,7 +9,7 @@ import { getUser } from '../auth/decorator/getUser.decorator';
 import { Response } from 'express';
 import { AccessTokenPayload } from '../auth/tokenService/token.service';
 import { UpdateRoleDto } from './dto/update-role.dt';
-import { GetUserDto } from './dto/get-user.dto';
+import { PaginationDto } from './dto/get-user.dto';
 
 @Controller('user')
 @Auth([AuthStrategy.Bearer])
@@ -35,7 +35,7 @@ export class UserController {
   @UseInterceptors(FileInterceptor('profile'))
   uploadProfile(@UploadedFile(
     new ParseFilePipeBuilder()
-      .addFileTypeValidator({ fileType: "jpeg" })
+      .addFileTypeValidator({ fileType: /^image\/(jpeg|png|jpg)$/ })
       .addMaxSizeValidator({ maxSize: 3 * 1024 * 1024, message: "file must be lower than 3Mb" })
       .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY })
   ) profile: Express.Multer.File, @getUser('id') id: number) {
@@ -53,7 +53,7 @@ export class UserController {
   // get User List With Pagination
   @Get()
   @Role([UserRole.ADMIN])
-  findAll(@Query() { page }: GetUserDto) {
+  findAll(@Query() { page }: PaginationDto) {
     return this.userService.findAll(Number(page ?? 1));
   }
 

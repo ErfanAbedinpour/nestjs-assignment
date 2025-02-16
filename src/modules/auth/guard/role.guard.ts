@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from "@nestjs/common";
+import { CanActivate, ExecutionContext, ForbiddenException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { ROLE_TOKEN } from "../decorator/role.decorator";
 import { UserRole } from "../../../entities/user.entity";
@@ -16,7 +16,7 @@ export class RoleGuard implements CanActivate {
 
         const isValidRole = roleMeta.some(role => role === req.user.role);
         if (!isValidRole)
-            throw new ForbiddenException('you cannot access this route')
+            throw new UnauthorizedException('you cannot access this route')
 
         return true;
     }
