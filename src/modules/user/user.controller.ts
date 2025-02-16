@@ -35,7 +35,7 @@ export class UserController {
   @UseInterceptors(FileInterceptor('profile'))
   uploadProfile(@UploadedFile(
     new ParseFilePipeBuilder()
-      .addFileTypeValidator({ fileType: "jpeg" })
+      .addFileTypeValidator({ fileType: /^image\/(jpeg|png|jpg)$/ })
       .addMaxSizeValidator({ maxSize: 3 * 1024 * 1024, message: "file must be lower than 3Mb" })
       .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY })
   ) profile: Express.Multer.File, @getUser('id') id: number) {
