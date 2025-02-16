@@ -7,6 +7,6 @@ export class Attached extends BaseEntity {
     @Property({ nullable: false })
     src: string
 
-    @ManyToOne(() => Task, { deleteRule: "cascade", updateRule: "cascade", nullable: false })
+    @ManyToOne(() => Task, { deleteRule: "cascade", updateRule: "cascade", nullable: false, hidden: true })
     task: Task
 }

@@ -11,7 +11,7 @@ export class Task extends BaseEntity {
     @Property({ nullable: false })
     description: string
 
-    @OneToMany(() => Attached, attach => attach.task)
+    @OneToMany(() => Attached, attach => attach.task, { hidden: true })
     attached = new Collection<Attached>(this)
 
     @ManyToOne(() => User, { updateRule: "cascade", deleteRule: "cascade", nullable: false })

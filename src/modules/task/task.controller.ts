@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, HttpStatus, ParseFilePipeBuilder, UploadedFile } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
+import { getUser } from '../auth/decorator/getUser.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('task')
 @Auth([AuthStrategy.Bearer])
@@ -10,8 +12,14 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) { }
 
   @Post()
-  create(@Body() createTaskDto: CreateTaskDto) {
-    return this.taskService.create(createTaskDto);
+  @UseInterceptors(FileInterceptor('attached'))
+  create(@UploadedFile(
+    new ParseFilePipeBuilder()
+      // .addFileTypeValidator({ fileType: "jpeg" })
+      .addMaxSizeValidator({ maxSize: 3 * 1024 * 1024, message: "file must be lower than 3Mb" })
+      .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY })
+  ) attached: Express.Multer.File, @Body() createTaskDto: CreateTaskDto, @getUser("id") userId: number) {
+    return this.taskService.create(createTaskDto, attached, userId);
   }
 
   @Get()
