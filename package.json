@@ -22,7 +22,8 @@
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "migrate:up": "mikro-orm migration:up",
-    "migrate:create": "mikro-orm migration:create"
+    "migrate:create": "mikro-orm migration:create",
+    "seed": "mikro-orm seeder:run"
   },
   "mikro-orm": {
     "configPaths": [
@@ -35,6 +36,7 @@
     "@mikro-orm/migrations": "^6.4.6",
     "@mikro-orm/mysql": "^6.4.6",
     "@mikro-orm/nestjs": "^6.1.0",
+    "@mikro-orm/seeder": "^6.4.6",
     "@nestjs/cache-manager": "^3.0.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.0",
