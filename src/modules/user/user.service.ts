@@ -19,17 +19,18 @@ export class UserService {
 
   async getProfilePicture(filename: string, userId: number, role: UserRole): Promise<ReadStream> {
     // check User Role if Not Admin Authorize them
+
     if (role === UserRole.USER) {
       const isUserAccess = await this.em.findOne(Profile, { user: userId, src: filename });
 
       if (!isUserAccess)
-        throw new BadGatewayException("user doesnt have this profile");
+        throw new BadRequestException("you have not access to this profile");
     }
 
     const filePath = this.baseProfilePath + filename;
 
     if (!existsSync(filePath))
-      throw new NotFoundException("file not found.")
+      throw new NotFoundException("profile not found")
 
     const readStream = createReadStream(filePath);
     return readStream
@@ -52,9 +53,8 @@ export class UserService {
 
       return { msg: "profile uploaded successfully", fileName: fileName }
     } catch (err) {
-
       this.logger.error(err)
-      throw new InternalServerErrorException(ErrorMessages.UNKNOWS_ERROR)
+      throw new InternalServerErrorException("error during upload profile. please try again later!")
     }
   }
 
@@ -107,14 +107,14 @@ export class UserService {
     }
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto, role: UserRole) {
+  async update(id: number, updateUserDto: UpdateUserDto, isAdmin?: boolean) {
     try {
       const user = await this.em.findOneOrFail(User, id);
 
 
-      if (updateUserDto.username && role !== UserRole.ADMIN) {
+      if (updateUserDto.username && !isAdmin)
         throw new BadRequestException("cannot change your own username");
-      }
+
 
       const newUser = wrap(user).assign(updateUserDto)
       await this.em.flush();

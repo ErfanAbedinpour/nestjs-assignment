@@ -66,7 +66,7 @@ describe("AccessToken Guard", () => {
         it("should be throw NotFound for invaid userId", () => {
             const updatePromise = service.update(12, {
                 username: "this is new username"
-            }, regularUser.role)
+            })
 
             expect(updatePromise).rejects.toThrow(NotFoundException)
             expect(updatePromise).rejects.toThrow(ErrorMessages.USER_NOTFOUND)
@@ -76,7 +76,7 @@ describe("AccessToken Guard", () => {
         it("should be throw BadRequest for Update username by Normal User", () => {
             const updatePromise = service.update(regularUser.id, {
                 username: "this is new username"
-            }, regularUser.role)
+            })
 
             expect(updatePromise).rejects.toThrow(BadRequestException)
             expect(updatePromise).rejects.toThrow("cannot change your own username")
@@ -86,7 +86,7 @@ describe("AccessToken Guard", () => {
         it("should be updated successfully by normal User", async () => {
             const updatePromise = service.update(regularUser.id, {
                 email: "newMail@gmail.com"
-            }, regularUser.role)
+            },)
 
             expect(updatePromise).resolves.toBeTruthy()
             expect(updatePromise).resolves.toBeInstanceOf(User)
@@ -98,7 +98,7 @@ describe("AccessToken Guard", () => {
         it("should be updated user username by admin", async () => {
             const updatePromise = service.update(regularUser.id, {
                 username: "newUsername"
-            }, adminUser.role)
+            }, true)
 
             expect(updatePromise).resolves.toBeTruthy()
             expect(updatePromise).resolves.toBeInstanceOf(User)
