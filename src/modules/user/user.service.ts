@@ -113,7 +113,7 @@ export class UserService {
 
 
       if (updateUserDto.username && role !== UserRole.ADMIN) {
-        throw new BadRequestException("cannot change you own username");
+        throw new BadRequestException("cannot change your own username");
       }
 
       const newUser = wrap(user).assign(updateUserDto)
