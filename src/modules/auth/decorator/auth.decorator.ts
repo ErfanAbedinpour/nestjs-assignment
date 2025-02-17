@@ -8,4 +8,4 @@ export enum AuthStrategy {
     NONE
 }
 
-export const Auth = (strategy: AuthStrategy[]) => SetMetadata(AUTH_TOKEN, strategy)
+export const Auth = (...strategy: AuthStrategy[]) => SetMetadata(AUTH_TOKEN, strategy)

@@ -25,7 +25,7 @@
   },
     "include": [
     "./src/**/*.ts"
-  ],
+, "test/auth.e2e.spec.ts"  ],
   "ts-node": {
     "esm": true,
     "transpileOnly": true

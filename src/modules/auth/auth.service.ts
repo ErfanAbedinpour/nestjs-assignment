@@ -51,10 +51,11 @@ export class AuthService {
   async login({ password, username }: LoginDto) {
     // find User
     const user = await this.em.findOne(User, { username });
-
     // validate User Credential
-    if (!user || !(await this.hashService.compare(password, user.password)))
+
+    if (!user || !(await this.hashService.compare(password, user.password))) {
       throw new BadRequestException(ErrorMessages.INVALID_CREDENTIAL)
+    }
 
     try {
 
@@ -81,9 +82,9 @@ export class AuthService {
 
       const isValidToken = await this.userTokenService.isValid(id, tokenId, refreshToken);
 
-      if (!isValidToken) {
+      if (!isValidToken)
         throw new UnauthorizedException(ErrorMessages.INVALID_TOKEN)
-      }
+
 
       // get original User From DB
       const user = await this.em.findOneOrFail(User, id);

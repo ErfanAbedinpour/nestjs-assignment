@@ -8,7 +8,7 @@ import { ApiBearerAuth, ApiBody, ApiConsumes, ApiNotFoundResponse, ApiOkResponse
 import { HttpErrorDto } from "../../dto/error.dto";
 
 @Controller("task/:id/attach")
-@Auth([AuthStrategy.Bearer])
+@Auth(AuthStrategy.Bearer)
 @ApiUnauthorizedResponse({ description: "header is empty or token invalid", type: HttpErrorDto })
 @ApiBearerAuth()
 export class AttachController {
