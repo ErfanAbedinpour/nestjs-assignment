@@ -12,8 +12,6 @@ import { UserDto } from './dto/user.dto';
 import { findAllQuery } from './dto/get-user.dto';
 import { UpdateRoleDto } from './dto/update-role.dt';
 import { Auth, AuthStrategy } from '../auth/decorator/auth.decorator';
-import { getUser } from '../auth/decorator/getUser.decorator';
-import { Response } from 'express';
 
 @Controller("admin/user")
 @Auth(AuthStrategy.Bearer)
@@ -35,6 +33,7 @@ export class AdminController {
         return this.userService.removeFileName(filename);
     }
 
+    // updated user
     @Patch(":id")
     @ApiOkResponse({
         description: "user Updated successfully", type: CreateUserDto
@@ -63,7 +62,7 @@ export class AdminController {
     @ApiNotFoundResponse({ description: "user Not found", type: HttpErrorDto })
     @ApiUnauthorizedResponse({ description: "you have not access to this route", type: HttpErrorDto })
     @Role(UserRole.ADMIN)
-    findOne(@Param('userId', ParseIntPipe) id: number) {
+    findOne(@Param('id', ParseIntPipe) id: number) {
         return this.userService.findOne(id);
     }
 
@@ -75,7 +74,7 @@ export class AdminController {
     @ApiNotFoundResponse({ description: "user not found", type: HttpErrorDto })
     @ApiUnauthorizedResponse({ description: "you have not access to this route", type: HttpErrorDto })
     @Role(UserRole.ADMIN)
-    changeRole(@Body() role: UpdateRoleDto, @Param('userId', ParseIntPipe) userId: number) {
+    changeRole(@Body() role: UpdateRoleDto, @Param('id', ParseIntPipe) userId: number) {
         return this.userService.changeRole(role, userId)
     }
 

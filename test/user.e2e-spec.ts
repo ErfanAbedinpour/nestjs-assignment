@@ -98,7 +98,7 @@ describe('AppController (e2e)', () => {
     describe("/user/:id (PATCH)", () => {
         it("should be throw BadRequest for update username ", () => {
             return request(server)
-                .patch(`/user/${normalUser.id}`)
+                .patch(`/user`)
                 .set('Authorization', `Bearer ${userAccessToken}`)
                 .send({ username: "something" })
                 .expect(HttpStatus.BAD_REQUEST)
@@ -110,7 +110,7 @@ describe('AppController (e2e)', () => {
 
         it("should be updated by admin", () => {
             return request(server)
-                .patch(`/user/${normalUser.id}`)
+                .patch(`/admin/user/${normalUser.id}`)
                 .set('Authorization', `Bearer ${adminAccessToken}`)
                 .send({ username: "something" })
                 .expect(HttpStatus.OK)
@@ -121,12 +121,12 @@ describe('AppController (e2e)', () => {
 
         it("should be updated email by user", () => {
             return request(server)
-                .patch(`/user/${normalUser.id}`)
-                .set('Authorization', `Bearer ${adminAccessToken}`)
-                .send({ username: "something" })
+                .patch(`/user/`)
+                .set('Authorization', `Bearer ${userAccessToken}`)
+                .send({ email: "newMail@gmail.com" })
                 .expect(HttpStatus.OK)
                 .then(res => {
-                    expect(res.body.username).toStrictEqual('something')
+                    expect(res.body.email).toStrictEqual('newMail@gmail.com')
                 })
         })
 
