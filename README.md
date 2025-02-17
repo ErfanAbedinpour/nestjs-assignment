@@ -58,16 +58,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
@@ -169,7 +159,7 @@ project-root/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/ErfanAbedinpour/nestjs-assignment
+git clone https://github.com/ErfanAbedinpour/nestjs-assignment .
 ```
 
 2. Install dependencies:
@@ -179,7 +169,6 @@ npm install
 ```
 
 3. Set up environment variables:
-
 ```bash
 cp .env.example .env
 # Edit .env with your configuration
@@ -188,8 +177,7 @@ cp .env.example .env
 4. Run database migrations:
 
 ```bash
-npm run migration:create
-npm run migration:up
+npm run migrate:up
 ```
 4. Run database seed:
 
@@ -202,27 +190,37 @@ npm run seed
 npm run dev
 ```
 
-### using dokcer for run
+### using dokcer for run(Recomendatioin)
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/ErfanAbedinpour/nestjs-assignment.git
+git clone https://github.com/ErfanAbedinpour/nestjs-assignment.git .
 ```
 
-2. Run Database migrations:
+2. Install Dependency
+```bash
+npm install 
+```
+
+3. Set up environment variables and config by your own information:
+```bash
+cp .env.example .env
+```
+
+4. Run Database migrations:
 
 ```bash
 docker compose up migration
 ```
 
-3. Run Database Seeders:
+5. Run Database Seeders:
 
 ```bash
 docker compose up seed
 ```
 
-4. Start
+6. Start
 
 ```bash
 docker compose up

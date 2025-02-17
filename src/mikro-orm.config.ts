@@ -4,6 +4,7 @@ import { MySqlDriver } from "@mikro-orm/mysql";
 import { SeedManager } from "@mikro-orm/seeder";
 import { Logger } from "@nestjs/common";
 import { DatabaseSeeder } from "./seeder/seed";
+import 'dotenv/config'
 
 
 const logger = new Logger("MikroOrm")
@@ -15,6 +16,7 @@ console.log('db uri is', DB_URI)
 export default defineConfig({
     clientUrl: DB_URI,
     entities: ['./dist/entities/*.entity.js'],
+    entitiesTs: ['./src/entities/*.entity.ts'],
     port: +process.env.DB_PORT,
     extensions: [Migrator, SeedManager],
     dbName: process.env.DB_NAME,
