@@ -5,6 +5,10 @@ import { SeedManager } from "@mikro-orm/seeder";
 import { Logger } from "@nestjs/common";
 import { DatabaseSeeder } from "./seeder/seed";
 import 'dotenv/config'
+import { Attached } from "./entities/attached.entity";
+import { User } from "./entities/user.entity";
+import { Profile } from "./entities/profile.entity";
+import { Task } from "./entities/task.entity";
 
 
 const logger = new Logger("MikroOrm")
@@ -16,7 +20,7 @@ console.log('db uri is', DB_URI)
 export default defineConfig({
     clientUrl: DB_URI,
     entities: ['./dist/entities/*.entity.js'],
-    entitiesTs: ['./src/entities/*.entity.ts'],
+    entitiesTs: [Attached, User, Profile, Task],
     port: +process.env.DB_PORT,
     extensions: [Migrator, SeedManager],
     dbName: process.env.DB_NAME,
