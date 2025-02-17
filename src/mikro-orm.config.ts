@@ -4,6 +4,7 @@ import { MySqlDriver } from "@mikro-orm/mysql";
 import { SeedManager } from "@mikro-orm/seeder";
 import { Logger } from "@nestjs/common";
 import { DatabaseSeeder } from "./seeder/seed";
+import 'dotenv/config'
 
 
 const logger = new Logger("MikroOrm")
