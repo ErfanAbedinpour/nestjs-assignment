@@ -11,8 +11,6 @@ export class AuthGuard implements CanActivate {
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const strategy = this.reflector.getAllAndOverride<AuthStrategy[]>(AUTH_TOKEN, [context.getHandler(), context.getClass()]) ?? [AuthStrategy.NONE];
 
-
-
         for (const s of strategy) {
             if (s === AuthStrategy.Bearer) {
                 try {
