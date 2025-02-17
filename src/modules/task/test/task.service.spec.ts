@@ -150,8 +150,17 @@ describe("AccessToken Guard", () => {
     })
 
     describe("update", () => {
-        it("should be updated successfully", () => {
-
+        it("should be updated successfully", async () => {
+            const updatePromise = service.update(2, regularUser.id, {
+                description: "this is new description",
+                name: "this is new name"
+            })
+            expect(updatePromise).resolves.toBeTruthy()
+            expect(updatePromise).resolves.toBeInstanceOf(Task)
+            // find and check is it updated or not
+            const newTask = await service.findOne(2, regularUser.id)
+            expect(newTask!.name).toStrictEqual("this is new name")
+            expect(newTask!.description).toStrictEqual("this is new description")
         })
     })
 
