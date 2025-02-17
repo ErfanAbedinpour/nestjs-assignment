@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HttpStatus } from '@nestjs/common';
+import { HttpStatus, INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
@@ -16,6 +16,7 @@ import { ErrorMessages } from '../src/responses/error.response';
 describe('AppController (e2e)', () => {
     let server: App;
     let user: User;
+    let app: INestApplication
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -27,7 +28,7 @@ describe('AppController (e2e)', () => {
             providers: [],
         }).compile();
 
-        const app = moduleFixture.createNestApplication();
+        app = moduleFixture.createNestApplication();
         const em = moduleFixture.get(EntityManager);
         user = em.create(User, { username: "admin", password: "admin", email: "admin@gmail.com", phone: "0911", role: UserRole.ADMIN }, { persist: true })
         await em.flush();
@@ -112,5 +113,10 @@ describe('AppController (e2e)', () => {
                     expect(res.body).toHaveProperty("newRefreshToken")
                 })
         })
+    })
+
+
+    afterAll(async () => {
+        await app.close();
     })
 });
