@@ -14,7 +14,7 @@ async function bootstrap() {
   // config swagger
   const config = new DocumentBuilder()
     .setTitle('Nadin-Soft')
-    .setDescription('the Api For Nestjs Assingment')
+    .setDescription('the Api For Nadin-Soft Company')
     .setVersion('2.0.1')
     .addTag('Task Managment')
     .build();

@@ -97,3 +97,147 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+# Features
+
+- Modular artitechure
+- JWT Base Authentication
+- Role Based Access Contorol(RBAC) Authorization
+- Rate limiter
+- TypeScript
+- Request Validation
+- Error Handling
+- Unit Testing
+- Database Migrations
+- API Documentation (swagger)
+
+## 🛠 Tech Stack
+
+- Node.js
+- TypeScript
+- Nestjs
+- mysql with Mikro-orm
+- Jest for Testing
+- SuperTest for E2E test
+- class validator for Validation
+- JWT for Authentication
+- Swagger for Documentation
+- Multer for Working With File
+
+## Project Structure
+
+```
+project-root/
+├── src/
+│   ├── config                # globa app config
+│   │── decorator             # global decorators
+│   │── import                # project imports
+│   │       ├── external.ts   # Import external modules
+│   │       └── internal.ts   # Import internal modules
+│   │── migrations            # Database migrations
+│   │── entities              # Database Models
+│   ├── modules               # App Modules
+│   ├── seeder                # Database Seeders
+├── types                     # Application (interfaces,types,...)
+├── public                    # Static Files(user profile, attach files)
+├── dto                       # global DTO
+├── responses                 # Message Responses 
+
+
+```
+
+## Packages
+
+- [Nestjs](https://nestjs.com/) (Main Framwork)
+- [MikroOrm](https://mikro-orm.io/)(mini Orm To Working With Postgres )
+- [Mysql](https://www.mysql.com/)(Main Database)
+- [jwt](https://jwt.io/)(Autentication and Authorization By JsonWebToken)
+- [swagger](https://swagger.io/)(Documentation APIs)
+- [argon2](https://www.npmjs.com/package/argon2)(New Method for hashing Fast and safe)
+
+## 🔧 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- Mysql
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/ErfanAbedinpour/nestjs-assignment
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up environment variables:
+
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
+
+4. Run database migrations:
+
+```bash
+npm run migration:create
+npm run migration:up
+```
+4. Run database seed:
+
+```bash
+npm run seed
+```
+5. Start the development server:
+
+```bash
+npm run dev
+```
+
+### using dokcer for run
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/ErfanAbedinpour/nestjs-assignment.git
+```
+
+2. Run Database migrations:
+
+```bash
+docker compose up migration
+```
+
+3. Run Database Seeders:
+
+```bash
+docker compose up seed
+```
+
+4. Start
+
+```bash
+docker compose up
+```
+
+### Running Tests
+
+```bash
+# Run tests
+npm test
+
+# Run E2E tests
+npm run test:e2e
+```
+
+### Api Documentaion
+
+- Swagger Docuement http://host:port/docs

@@ -65,6 +65,7 @@ export class TaskService {
     return {
       tasks,
       meta: {
+        page: page,
         count: tasks.length,
         allPages: Math.ceil(count / limitRow),
         countAll: count,

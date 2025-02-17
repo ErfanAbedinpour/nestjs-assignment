@@ -16,7 +16,7 @@ export class RoleGuard implements CanActivate {
 
         const isValidRole = roleMeta.some(role => role === req.user.role);
         if (!isValidRole)
-            throw new UnauthorizedException('you cannot access this route')
+            throw new ForbiddenException('you cannot access this route')
 
         return true;
     }

@@ -11,7 +11,7 @@ import { UploadDto } from './dto/uplaod.dto';
 import { HttpErrorDto } from '../../dto/error.dto';
 
 @Controller('task')
-@Auth([AuthStrategy.Bearer])
+@Auth(AuthStrategy.Bearer)
 @ApiUnauthorizedResponse({ description: "header is empty or token invalid", type: HttpErrorDto })
 @ApiBearerAuth()
 export class TaskController {
@@ -36,7 +36,7 @@ export class TaskController {
   }
 
   @Get()
-  @ApiOkResponse({ description: "file fetched successfully", type: [TaskDto] })
+  @ApiOkResponse({ description: "taks fetched successfully", type: [TaskDto] })
   findAll(@Query() query: FindAllTaskQuery, @getUser("id") userId: number) {
     return this.taskService.findAll({ page: query.page, limit: query.limit }, userId, query.sort, { name: query.name });
   }
