@@ -11,7 +11,7 @@ import { UploadDto } from './dto/uplaod.dto';
 import { HttpErrorDto } from '../../dto/error.dto';
 
 @Controller('task')
-@Auth([AuthStrategy.Bearer])
+@Auth(AuthStrategy.Bearer)
 @ApiUnauthorizedResponse({ description: "header is empty or token invalid", type: HttpErrorDto })
 @ApiBearerAuth()
 export class TaskController {
