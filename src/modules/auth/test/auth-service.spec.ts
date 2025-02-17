@@ -22,8 +22,10 @@ describe("Auth Service", () => {
 
     beforeAll(async () => {
         const module = await Test.createTestingModule({
-            imports: [ConfigModule.forFeature(tokenConfig), CacheModule.register(), JwtModule.register({}),
-            MikroOrmModule.forRoot({ ensureDatabase: { create: true }, entities: [User], driver: SqliteDriver, allowGlobalContext: true, dbName: ":memory:" })],
+            imports: [
+                ConfigModule.forFeature(tokenConfig), CacheModule.register(), JwtModule.register({}),
+                MikroOrmModule.forRoot({ ensureDatabase: { create: true }, entities: [User], driver: SqliteDriver, allowGlobalContext: true, dbName: ":memory:" })
+            ],
             providers: [
                 AuthService,
                 UserTokenService,
