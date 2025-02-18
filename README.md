@@ -91,19 +91,21 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 # Features
 
-- Modular artitechure
+- Modular structure
 - JWT Base Authentication
 - Role Based Access Contorol(RBAC) Authorization
-- Rate limiter
 - TypeScript
 - Request Validation
 - Error Handling
 - Unit Testing
+- E2E Testing
+- Database Seeder 
 - Database Migrations
-- API Documentation (swagger)
+- API Documentation (swagger && Postman Collection)
+- Multer FileSize and Type Validator
+- Multer FileLimit
 
 ## 🛠 Tech Stack
-
 - Node.js
 - TypeScript
 - Nestjs
@@ -235,6 +237,33 @@ npm test
 # Run E2E tests
 npm run test:e2e
 ```
+
+## TODO:
+- [x] Added Task
+- [x] Register User
+- [x] Loign User
+- [x] Generate new token 
+- [x] Role Guard
+- [x] Added Task
+- [x] Added AttachFile To Task
+- [x] Remove Attach File
+- [x] Download Attach File Directly
+- [x] Upload Profile
+- [x] Remove Profile By Admin
+- [x] FindAllTask 
+- [x] FindAllUser
+- [x] FindAllPagination
+- [x] FindAllSortAndFilter
+- [x] Download profile and remove by admin
+- [x] Integration Test
+- [x] Unit Test
+- [x] e2e Test
+- [x] dockerize
+- [x] Seeder
+- [x] Migration
+- [x] gitFlow
+- [x] PostMan Collection
+- [x] Swagger Docementation
 
 ### Api Documentaion
 
