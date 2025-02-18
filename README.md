@@ -187,7 +187,7 @@ npm run seed
 5. Start the development server:
 
 ```bash
-npm run dev
+npm run start:dev
 ```
 
 ### using dokcer for run(Recomendatioin)
